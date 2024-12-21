@@ -71,6 +71,7 @@ namespace Seminario_Proyecto_II.Forms.Login
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             panelLogin = new Panel();
+            lblVersion = new Label();
             pictureBox1 = new PictureBox();
             labelUsername = new Label();
             textBoxUsername = new TextBox();
@@ -84,6 +85,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             // 
             // panelLogin
             // 
+            panelLogin.Controls.Add(lblVersion);
             panelLogin.Controls.Add(pictureBox1);
             panelLogin.Controls.Add(labelUsername);
             panelLogin.Controls.Add(textBoxUsername);
@@ -98,12 +100,22 @@ namespace Seminario_Proyecto_II.Forms.Login
             panelLogin.Size = new Size(400, 250);
             panelLogin.TabIndex = 0;
             // 
+            // lblVersion
+            // 
+            lblVersion.Font = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblVersion.ForeColor = Color.White;
+            lblVersion.Location = new Point(12, 218);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(42, 23);
+            lblVersion.TabIndex = 7;
+            lblVersion.Text = "V 1.0";
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(165, 12);
+            pictureBox1.Location = new Point(158, 23);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 67);
+            pictureBox1.Size = new Size(77, 60);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -112,7 +124,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             // 
             labelUsername.Font = new Font("Arial", 10F);
             labelUsername.ForeColor = Color.White;
-            labelUsername.Location = new Point(104, 85);
+            labelUsername.Location = new Point(97, 84);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(100, 23);
             labelUsername.TabIndex = 0;
@@ -124,7 +136,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             textBoxUsername.BorderStyle = BorderStyle.None;
             textBoxUsername.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxUsername.ForeColor = Color.White;
-            textBoxUsername.Location = new Point(104, 111);
+            textBoxUsername.Location = new Point(97, 110);
             textBoxUsername.MaxLength = 50;
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(200, 18);
@@ -135,7 +147,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             // 
             labelPassword.Font = new Font("Arial", 10F);
             labelPassword.ForeColor = Color.White;
-            labelPassword.Location = new Point(104, 140);
+            labelPassword.Location = new Point(97, 139);
             labelPassword.Name = "labelPassword";
             labelPassword.Size = new Size(100, 23);
             labelPassword.TabIndex = 2;
@@ -147,7 +159,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             textBoxPassword.BorderStyle = BorderStyle.None;
             textBoxPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBoxPassword.ForeColor = Color.White;
-            textBoxPassword.Location = new Point(104, 166);
+            textBoxPassword.Location = new Point(97, 165);
             textBoxPassword.MaxLength = 50;
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.PasswordChar = '*';
@@ -161,7 +173,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             buttonTogglePassword.FlatStyle = FlatStyle.Flat;
             buttonTogglePassword.Font = new Font("Arial", 9F);
             buttonTogglePassword.ForeColor = Color.White;
-            buttonTogglePassword.Location = new Point(310, 164);
+            buttonTogglePassword.Location = new Point(303, 163);
             buttonTogglePassword.Name = "buttonTogglePassword";
             buttonTogglePassword.Size = new Size(30, 23);
             buttonTogglePassword.TabIndex = 4;
@@ -174,7 +186,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             buttonLogin.BackColor = Color.FromArgb(0, 122, 204);
             buttonLogin.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonLogin.ForeColor = Color.White;
-            buttonLogin.Location = new Point(165, 208);
+            buttonLogin.Location = new Point(158, 198);
             buttonLogin.Name = "buttonLogin";
             buttonLogin.Size = new Size(100, 30);
             buttonLogin.TabIndex = 5;
@@ -192,7 +204,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Login";
+            Text = "Inicio de Sesión";
             panelLogin.ResumeLayout(false);
             panelLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -210,5 +222,6 @@ namespace Seminario_Proyecto_II.Forms.Login
         // Aquí debe estar la declaración de components
         //private System.ComponentModel.IContainer components;
         private PictureBox pictureBox1;
+        private Label lblVersion;
     }
 }
