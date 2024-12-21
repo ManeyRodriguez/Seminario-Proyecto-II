@@ -1,7 +1,7 @@
-﻿
-using Seminario_Proyecto_II.Forms.Login;
+﻿using Seminario_Proyecto_II.Forms.Residentes; // Make sure to include this namespace
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Seminario_Proyecto_II.Forms
@@ -83,21 +83,23 @@ namespace Seminario_Proyecto_II.Forms
             // 
             agregarResidenteMenuItem.Image = Properties.Resources.plus;
             agregarResidenteMenuItem.Name = "agregarResidenteMenuItem";
-            agregarResidenteMenuItem.Size = new Size(180, 22);
+            agregarResidenteMenuItem.Size = new Size(170, 22);
             agregarResidenteMenuItem.Text = "Agregar Residente";
+            agregarResidenteMenuItem.Click += agregarResidenteMenuItem_Click;
             // 
             // verResidentesMenuItem
             // 
             verResidentesMenuItem.Image = Properties.Resources.search;
             verResidentesMenuItem.Name = "verResidentesMenuItem";
-            verResidentesMenuItem.Size = new Size(180, 22);
+            verResidentesMenuItem.Size = new Size(170, 22);
             verResidentesMenuItem.Text = "Ver Residentes";
+            verResidentesMenuItem.Click += verResidentesMenuItem_Click;
             // 
             // editarResidenteMenuItem
             // 
             editarResidenteMenuItem.Image = Properties.Resources.pen;
             editarResidenteMenuItem.Name = "editarResidenteMenuItem";
-            editarResidenteMenuItem.Size = new Size(180, 22);
+            editarResidenteMenuItem.Size = new Size(170, 22);
             editarResidenteMenuItem.Text = "Editar Residente";
             // 
             // casasyAccesosMenuItem
@@ -110,12 +112,14 @@ namespace Seminario_Proyecto_II.Forms
             // 
             // agregarCasaMenuItem
             // 
+            agregarCasaMenuItem.Image = Properties.Resources.plus;
             agregarCasaMenuItem.Name = "agregarCasaMenuItem";
             agregarCasaMenuItem.Size = new Size(144, 22);
             agregarCasaMenuItem.Text = "Agregar Casa";
             // 
             // verCasasMenuItem
             // 
+            verCasasMenuItem.Image = Properties.Resources.search;
             verCasasMenuItem.Name = "verCasasMenuItem";
             verCasasMenuItem.Size = new Size(144, 22);
             verCasasMenuItem.Text = "Ver Casas";
@@ -130,6 +134,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             // verHistorialMenuItem
             // 
+            verHistorialMenuItem.Image = Properties.Resources.search;
             verHistorialMenuItem.Name = "verHistorialMenuItem";
             verHistorialMenuItem.Size = new Size(199, 22);
             verHistorialMenuItem.Text = "Ver Historial de Accesos";
@@ -192,13 +197,13 @@ namespace Seminario_Proyecto_II.Forms
             ClientSize = new Size(800, 450);
             ControlBox = false;
             Controls.Add(panelMain);
-            Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            Controls.Add(statusStrip1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestion y Monitoreo de Acceso a Residenciales";
+            Text = "GMAR - Gestión y Monitoreo de Acceso Residencial";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panelMain.ResumeLayout(false);
@@ -211,18 +216,7 @@ namespace Seminario_Proyecto_II.Forms
 
         #endregion
 
-        private void timerDateTime_Tick(object sender, EventArgs e)
-        {
-            // Actualiza la fecha y hora en el StatusStrip cada vez que el timer hace "tick"
-            toolStripStatusLabelDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
-        }
 
-        private void exitMenuItem_Click(object sender, EventArgs e)
-        {
-            new LoginForm().Show(); this.Hide();
 
-        }
-
-        
     }
 }
