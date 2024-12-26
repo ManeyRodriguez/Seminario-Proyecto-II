@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Seminario_Proyecto_II.Data.Repositories;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,66 +7,8 @@ namespace Seminario_Proyecto_II.Forms.Login
 {
     public partial class LoginForm : Form
     {
-        // Evento que maneja el clic en el botón de login
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            // Obtener el nombre de usuario y la contraseña ingresados por el usuario
-            string username = textBoxUsername.Text;
-            string password = textBoxPassword.Text;
-
-            // Lógica simple de autenticación (para pruebas)
-            if (username == "admin" && password == "1234") // Reemplaza por tu lógica de validación
-            {
-               // MessageBox.Show("Login exitoso", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Aquí puedes redirigir a otra pantalla si el login es exitoso
-                new MainForm().Show(); this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Evento para mostrar/ocultar la contraseña
-        private void buttonTogglePassword_Click(object sender, EventArgs e)
-        {
-            // Cambiar la visibilidad de la contraseña
-            textBoxPassword.PasswordChar = (textBoxPassword.PasswordChar == '\0') ? '*' : '\0';
-        }
-
-        // Método para aplicar los estilos personalizados (colores y fuentes)
-        private void ApplyCustomStyles()
-        {
-            // Cambiar el color de fondo del formulario
-            this.BackColor = Color.FromArgb(34, 34, 34);
-
-            // Aplicar colores a los controles (Botones, etiquetas, etc.)
-            foreach (Control control in this.Controls)
-            {
-                if (control is Button)
-                {
-                    Button button = (Button)control;
-                    button.BackColor = Color.FromArgb(0, 122, 204);
-                    button.ForeColor = Color.White;
-                    button.FlatStyle = FlatStyle.Flat;
-                    button.Font = new Font("Arial", 9F, FontStyle.Bold);
-                }
-                else if (control is Label)
-                {
-                    Label label = (Label)control;
-                    label.ForeColor = Color.White;
-                    label.Font = new Font("Arial", 10F);
-                }
-                else if (control is TextBox)
-                {
-                    TextBox textBox = (TextBox)control;
-                    textBox.BackColor = Color.FromArgb(50, 50, 50);
-                    textBox.ForeColor = Color.White;
-                    textBox.BorderStyle = BorderStyle.None;
-                    textBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular);
-                }
-            }
-        }
+        
+        
 
         private void InitializeComponent()
         {
