@@ -18,6 +18,8 @@ namespace Seminario_Proyecto_II.Data
         public DbSet<HistorialDeAcceso> HistorialDeAccesos { get; set; }
         public DbSet<Notificacion> Notificaciones { get; set; }
 
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
