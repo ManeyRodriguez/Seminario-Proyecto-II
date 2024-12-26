@@ -14,7 +14,6 @@ namespace Seminario_Proyecto_II.Forms
         private System.Windows.Forms.ToolStripMenuItem residentesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarResidenteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verResidentesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarResidenteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem casasyAccesosMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarCasaMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verCasasMenuItem;
@@ -44,7 +43,6 @@ namespace Seminario_Proyecto_II.Forms
             residentesMenuItem = new ToolStripMenuItem();
             agregarResidenteMenuItem = new ToolStripMenuItem();
             verResidentesMenuItem = new ToolStripMenuItem();
-            editarResidenteMenuItem = new ToolStripMenuItem();
             casasyAccesosMenuItem = new ToolStripMenuItem();
             agregarCasaMenuItem = new ToolStripMenuItem();
             verCasasMenuItem = new ToolStripMenuItem();
@@ -52,6 +50,7 @@ namespace Seminario_Proyecto_II.Forms
             verHistorialMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
             panelMain = new Panel();
+            lblCreador = new Label();
             labelTitle = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabelDateTime = new ToolStripStatusLabel();
@@ -73,7 +72,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             // residentesMenuItem
             // 
-            residentesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarResidenteMenuItem, verResidentesMenuItem, editarResidenteMenuItem });
+            residentesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarResidenteMenuItem, verResidentesMenuItem });
             residentesMenuItem.Image = Properties.Resources.team;
             residentesMenuItem.Name = "residentesMenuItem";
             residentesMenuItem.Size = new Size(91, 21);
@@ -94,13 +93,6 @@ namespace Seminario_Proyecto_II.Forms
             verResidentesMenuItem.Size = new Size(170, 22);
             verResidentesMenuItem.Text = "Ver Residentes";
             verResidentesMenuItem.Click += verResidentesMenuItem_Click;
-            // 
-            // editarResidenteMenuItem
-            // 
-            editarResidenteMenuItem.Image = Properties.Resources.pen;
-            editarResidenteMenuItem.Name = "editarResidenteMenuItem";
-            editarResidenteMenuItem.Size = new Size(170, 22);
-            editarResidenteMenuItem.Text = "Editar Residente";
             // 
             // casasyAccesosMenuItem
             // 
@@ -152,6 +144,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             // panelMain
             // 
+            panelMain.Controls.Add(lblCreador);
             panelMain.Controls.Add(labelTitle);
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(0, 25);
@@ -159,11 +152,21 @@ namespace Seminario_Proyecto_II.Forms
             panelMain.Size = new Size(800, 403);
             panelMain.TabIndex = 1;
             // 
+            // lblCreador
+            // 
+            lblCreador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblCreador.AutoSize = true;
+            lblCreador.Location = new Point(496, 388);
+            lblCreador.Name = "lblCreador";
+            lblCreador.Size = new Size(301, 15);
+            lblCreador.TabIndex = 1;
+            lblCreador.Text = "Realizado por: Juan Manuel Rodriguez Perez | 100048277";
+            // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTitle.Location = new Point(250, 180);
+            labelTitle.Location = new Point(251, 26);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(349, 29);
             labelTitle.TabIndex = 0;
@@ -218,5 +221,6 @@ namespace Seminario_Proyecto_II.Forms
 
 
 
+        private Label lblCreador;
     }
 }
