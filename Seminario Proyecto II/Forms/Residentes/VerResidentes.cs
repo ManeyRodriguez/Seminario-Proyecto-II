@@ -46,7 +46,9 @@ namespace Seminario_Proyecto_II.Forms.Residentes
         {
             try
             {
-                var residentes = await _residentRepository.ObtenerTodos();
+                
+                var residentes = await _residentRepository.ObtenerTodos();  // Línea 49
+
                 return new BindingList<Residente>(residentes.ToList());
             }
             catch (Exception ex)

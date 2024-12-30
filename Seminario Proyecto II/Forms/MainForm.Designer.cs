@@ -106,15 +106,17 @@ namespace Seminario_Proyecto_II.Forms
             // 
             agregarCasaMenuItem.Image = Properties.Resources.plus;
             agregarCasaMenuItem.Name = "agregarCasaMenuItem";
-            agregarCasaMenuItem.Size = new Size(144, 22);
+            agregarCasaMenuItem.Size = new Size(180, 22);
             agregarCasaMenuItem.Text = "Agregar Casa";
+            agregarCasaMenuItem.Click += agregarCasaMenuItem_Click_1;
             // 
             // verCasasMenuItem
             // 
             verCasasMenuItem.Image = Properties.Resources.search;
             verCasasMenuItem.Name = "verCasasMenuItem";
-            verCasasMenuItem.Size = new Size(144, 22);
+            verCasasMenuItem.Size = new Size(180, 22);
             verCasasMenuItem.Text = "Ver Casas";
+            verCasasMenuItem.Click += verCasasMenuItem_Click;
             // 
             // historialMenuItem
             // 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seminario_Proyecto_II.Data;
 
@@ -11,9 +12,11 @@ using Seminario_Proyecto_II.Data;
 namespace Seminario_Proyecto_II.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241229163718_NombreDeLaMigracion")]
+    partial class NombreDeLaMigracion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,7 +94,7 @@ namespace Seminario_Proyecto_II.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ResidenteId")
+                    b.Property<int>("ResidenteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tipo")
@@ -258,7 +261,8 @@ namespace Seminario_Proyecto_II.Migrations
                     b.HasOne("Residente", "Residente")
                         .WithMany("Casas")
                         .HasForeignKey("ResidenteId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Residente");
                 });

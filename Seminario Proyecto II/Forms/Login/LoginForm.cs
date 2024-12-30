@@ -7,9 +7,11 @@ namespace Seminario_Proyecto_II.Forms.Login
 {
     public partial class LoginForm : Form
     {
-        private readonly IResidenteRepository _residenteRepository;
-        public LoginForm(IResidenteRepository residenteRepository)
+        private readonly IResidenteRepository  _residenteRepository;
+        private readonly ICasaRepository _casaRepository;
+        public LoginForm(IResidenteRepository residenteRepository, ICasaRepository casaRepository)
         {
+            _casaRepository = casaRepository;
             _residenteRepository = residenteRepository;
             InitializeComponent();           
             ApplyCustomStyles();
@@ -33,7 +35,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             {              
                 if (username.Equals("admin", StringComparison.OrdinalIgnoreCase) && password == "1234")
                 {                    
-                    var mainForm = new MainForm(_residenteRepository);
+                    var mainForm = new MainForm(_residenteRepository, _casaRepository);
                     mainForm.Show();
                     this.Hide();
                 }
