@@ -18,42 +18,54 @@ namespace Seminario_Proyecto_II.Data
         public DbSet<HistorialDeAcceso> HistorialDeAccesos { get; set; }
         public DbSet<Notificacion> Notificaciones { get; set; }
 
-        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuración de relaciones y restricciones
+            // Definir restricciones de longitud y otros detalles si es necesario
+            modelBuilder.Entity<Residente>()
+                .Property(r => r.Nombres)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            modelBuilder.Entity<PersonaRelacionada>()
+                .Property(p => p.Nombres)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            // Configuración de relaciones con comportamiento en eliminación
             modelBuilder.Entity<Residente>()
                 .HasMany(r => r.Casas)
                 .WithOne(c => c.Residente)
                 .HasForeignKey(c => c.ResidenteId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Residente>()
                 .HasMany(r => r.PersonasRelacionadas)
                 .WithOne(p => p.Residente)
                 .HasForeignKey(p => p.ResidenteId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Residente>()
                 .HasMany(r => r.Notificaciones)
                 .WithOne(n => n.Residente)
                 .HasForeignKey(n => n.ResidenteId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<PersonaRelacionada>()
                 .HasMany(p => p.CodigosDeAcceso)
                 .WithOne(c => c.PersonaRelacionada)
                 .HasForeignKey(c => c.PersonaId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CodigoDeAcceso>()
                 .HasMany(c => c.HistorialDeAccesos)
                 .WithOne(h => h.CodigoDeAcceso)
                 .HasForeignKey(h => h.CodigoId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
         }
+
     }
 }

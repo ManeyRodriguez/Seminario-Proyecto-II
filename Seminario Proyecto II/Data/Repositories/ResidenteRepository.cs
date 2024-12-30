@@ -88,13 +88,13 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new ArgumentNullException(nameof(residente));
 
             try
-            {               
+            {
                 var residenteExistente = await _context.Residentes.AsNoTracking().FirstOrDefaultAsync(r => r.Id == residente.Id);
 
                 if (residenteExistente == null)
                     throw new KeyNotFoundException($"Residente con ID {residente.Id} no encontrado.");
-              
-                _context.Residentes.Update(residente);  
+
+                _context.Residentes.Update(residente);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -124,5 +124,15 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new InvalidOperationException("Error al eliminar el residente.", ex);
             }
         }
+
+        public async Task<IEnumerable<Residente>> BuscarResidentes(string searchTerm)
+        {          
+            return await _context.Residentes
+                .Where(r => r.Nombres.Contains(searchTerm) ||
+                            r.Tel.Contains(searchTerm) ||
+                            r.DocID.Contains(searchTerm))
+                .ToListAsync();
+        }
     }
 }
+

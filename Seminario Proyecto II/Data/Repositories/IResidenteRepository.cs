@@ -16,5 +16,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
         Task Actualizar(Residente residente);
 
         Task Eliminar(int id);
+
+        Task<IEnumerable<Residente>> BuscarResidentes(string searchTerm);
     }
 }
