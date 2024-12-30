@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Residente
 {    
@@ -32,6 +33,14 @@ public class Residente
     public string PassHash { get; set; }
         
     public string Estado { get; set; } = "Activo";
+
+    [NotMapped]
+    public string NombreCompleto => $"{Nombres} {Apellidos}";
+
+    public override string ToString()
+    {
+        return NombreCompleto;
+    }
 
     public DateTime Fecha { get; set; } = DateTime.Now;
 
