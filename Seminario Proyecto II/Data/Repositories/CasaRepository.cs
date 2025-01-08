@@ -151,5 +151,32 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new InvalidOperationException("Error al eliminar la casa.", ex);
             }
         }
+
+        public async Task<IEnumerable<Casa>> BuscarCasas(string busqueda)
+        {
+            try
+            {
+                
+                var casas = await _context.Casas
+                    .Include(c => c.Residente) 
+                    .AsNoTracking()  
+                    .Where(c =>   
+                                c.Calle.Contains(busqueda) ||  
+                                c.NumCasa.Contains(busqueda)) 
+                    .ToListAsync();  
+
+                if (casas == null || !casas.Any()) 
+                {
+                    throw new KeyNotFoundException("No se encontraron casas que coincidan con la búsqueda.");
+                }
+
+                return casas;  
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error al buscar casas.", ex);
+            }
+        }
+
     }
 }

@@ -9,6 +9,8 @@ namespace Seminario_Proyecto_II.Data.Repositories
        
         Task<IEnumerable<Casa>> ObtenerTodos();
 
+        Task<IEnumerable<Casa>> BuscarCasas(string busqueda);
+
         Task<Casa> ObtenerPorId(int id);
 
         Task Agregar(Casa residente);
