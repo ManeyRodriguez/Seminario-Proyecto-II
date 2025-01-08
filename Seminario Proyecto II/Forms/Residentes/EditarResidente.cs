@@ -31,10 +31,11 @@ namespace Seminario_Proyecto_II.Forms.Residentes
                 if (_residente != null)
                 {
                     
-                    txtNombre.Text = _residente.Nombres;
-                    txtApellido.Text = _residente.Apellidos;
-                    txtTel.Text = _residente.Tel;
-                    txtCorreo.Text = _residente.Correo;
+                    txtNombre.Text = _residente.Nombres?.Trim();
+                    txtApellido.Text = _residente.Apellidos?.Trim();
+                    txtTel.Text = _residente.Tel?.Trim();
+                    txtCorreo.Text = _residente.Correo?.Trim();
+
                 }
                 else
                 {
@@ -67,24 +68,23 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             return isValid;
         }
 
-        
+
         private async void BtnGuardar_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 if (!ValidarCampos())
                 {
                     return;
                 }
-               
+
                 _residente.Nombres = txtNombre.Text;
                 _residente.Apellidos = txtApellido.Text;
                 _residente.Tel = txtTel.Text;
                 _residente.Correo = txtCorreo.Text;
-               
+
                 await _residenteRepository.Actualizar(_residente);
 
-              
                 DialogResult result = MessageBox.Show("Residente actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (result == DialogResult.OK)
@@ -94,9 +94,10 @@ namespace Seminario_Proyecto_II.Forms.Residentes
                 }
             }
             catch (Exception ex)
-            {               
+            {
                 MessageBox.Show($"Error al guardar los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

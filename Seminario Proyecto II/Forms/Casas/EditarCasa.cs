@@ -25,10 +25,18 @@ namespace Seminario_Proyecto_II.Forms.Casas
 
         private void CargarTipoCasa()
         {
-            cmbTipo.Items.Add("Casa");
-            cmbTipo.Items.Add("Apartamento");
+            if (!cmbTipo.Items.Contains("Casa"))
+            {
+                cmbTipo.Items.Add("Casa");
+            }
+
+            if (!cmbTipo.Items.Contains("Apartamento"))
+            {
+                cmbTipo.Items.Add("Apartamento");
+            }
             cmbTipo.SelectedIndex = 0;
         }
+
 
         private async void CargarDatosCasa(int casaId)
         {
@@ -63,13 +71,13 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 else
                 {
                     MessageBox.Show("No se encontró la casa con el ID proporcionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Close();
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al cargar los datos de la casa: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
+                this.Close();
             }
         }
 
@@ -90,9 +98,15 @@ namespace Seminario_Proyecto_II.Forms.Casas
 
                 await _casaRepository.Actualizar(_casa);
 
-                MessageBox.Show("Casa actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-                Close();
+
+                DialogResult result = MessageBox.Show("Casa actualizada correctamente..", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (result == DialogResult.OK)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
@@ -119,7 +133,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 {
                     foreach (var residente in residentes)
                     {
-                        lstResidentes.Items.Add(residente);  // Se agregan los objetos Residente
+                        lstResidentes.Items.Add(residente);
                     }
                 }
                 else
@@ -148,6 +162,43 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 {
                     lblResidenteActual.Text = "Residente Actual: No válido o no seleccionado.";
                 }
+            }
+        }
+
+        private async void txtBuscarResidente_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchTerm = txtBuscarResidente.Text.Trim();
+
+
+                if (searchTerm.Length >= 3)
+                {
+
+                    try
+                    {
+
+                        var residentes = await _residenteRepository.BuscarResidentes(searchTerm);
+                        lstResidentes.Items.Clear();
+
+                        if (residentes.Any())
+                        {
+                            foreach (var residente in residentes)
+                            {
+                                lstResidentes.Items.Add(residente);
+                            }
+                        }
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al buscar residentes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al buscar residentes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

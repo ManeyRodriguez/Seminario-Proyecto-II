@@ -129,6 +129,7 @@
             txtBuscarResidente.Name = "txtBuscarResidente";
             txtBuscarResidente.Size = new Size(200, 23);
             txtBuscarResidente.TabIndex = 8;
+            txtBuscarResidente.TextChanged += txtBuscarResidente_TextChanged_1;
             // 
             // btnBuscarResidente
             // 

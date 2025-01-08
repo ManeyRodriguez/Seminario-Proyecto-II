@@ -25,7 +25,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
             dgvCasas.Location = new Point(12, 50);
             dgvCasas.Name = "dgvCasas";
             dgvCasas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dgvCasas.Size = new Size(505, 300);
+            dgvCasas.Size = new Size(574, 300);
             dgvCasas.TabIndex = 0;
             // 
             // txtBuscar
@@ -54,7 +54,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
             btnEliminar.BackColor = Color.Red;
             btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(444, 11);
+            btnEliminar.Location = new Point(509, 11);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 3;
@@ -67,7 +67,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
             btnEditar.BackColor = Color.Green;
             btnEditar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(352, 11);
+            btnEditar.Location = new Point(417, 11);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(75, 23);
             btnEditar.TabIndex = 4;
@@ -80,7 +80,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 34, 34);
-            ClientSize = new Size(529, 370);
+            ClientSize = new Size(598, 370);
             Controls.Add(lblBuscar);
             Controls.Add(txtBuscar);
             Controls.Add(dgvCasas);

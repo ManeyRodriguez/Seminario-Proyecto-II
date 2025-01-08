@@ -23,39 +23,54 @@ namespace Seminario_Proyecto_II.Forms.Casas
 
         private async void VerCasas_Load(object sender, EventArgs e)
         {
-              
-            var casas = await ObtenerCasas();  
-            bindingSource.DataSource = casas;
-            dgvCasas.DataSource = bindingSource;
+            try
+            {
+             
+                var casas = await ObtenerCasas();
 
-         
-            dgvCasas.Columns["Calle"].HeaderText = "Calle";
-            dgvCasas.Columns["NumCasa"].HeaderText = "Número";
-            dgvCasas.Columns["Tipo"].HeaderText = "Tipo";
-            dgvCasas.Columns["Fecha"].HeaderText = "Fecha";
+          
+                bindingSource.DataSource = casas;
+                dgvCasas.DataSource = bindingSource;
 
-            dgvCasas.Columns["Id"].Visible = false;
-            dgvCasas.Columns["ResidenteId"].Visible = false;
-            dgvCasas.Columns["Residente"].Visible = false;
-            dgvCasas.Columns["Fecha"].Visible = false;
+      
+                dgvCasas.Columns["Calle"].HeaderText = "Calle";
+                dgvCasas.Columns["NumCasa"].HeaderText = "Número";
+                dgvCasas.Columns["Tipo"].HeaderText = "Tipo";
+                dgvCasas.Columns["Fecha"].HeaderText = "Fecha";
+
+                dgvCasas.Columns["Id"].Visible = false;
+                dgvCasas.Columns["ResidenteId"].Visible = false;
+                dgvCasas.Columns["Residente"].Visible = false; 
+                dgvCasas.Columns["Fecha"].Visible = false;
+
+
+      
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error al cargar las casas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-     
         private async Task<BindingList<Casa>> ObtenerCasas()
         {
             try
             {
-                var casas = await _casaRepository.ObtenerTodos();
+                // Asegurarse de que los residentes sean cargados al obtener las casas
+                var casas = await _casaRepository.ObtenerTodos();                   
+                    
+
                 return new BindingList<Casa>(casas.ToList());
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al obtener las casas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new BindingList<Casa>(); 
+                return new BindingList<Casa>();
             }
         }
 
-    
+
+
         private async void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvCasas.SelectedRows.Count > 0)
@@ -67,7 +82,7 @@ namespace Seminario_Proyecto_II.Forms.Casas
                     try
                     {
                         await _casaRepository.Eliminar(casaSeleccionada.Id);
-                        MessageBox.Show("Casa eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
+                        MessageBox.Show("Casa eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await CargarCasasActualizadas();
                     }
                     catch (Exception ex)
@@ -82,19 +97,19 @@ namespace Seminario_Proyecto_II.Forms.Casas
             }
         }
 
-       
+
         private async void BtnEditar_Click(object sender, EventArgs e)
         {
             if (dgvCasas.SelectedRows.Count > 0)
             {
-               var casaSeleccionada = (Casa)dgvCasas.SelectedRows[0].DataBoundItem;
-               var editarForm = new EditarCasa(casaSeleccionada.Id, _casaRepository, _residenteRepository);
+                var casaSeleccionada = (Casa)dgvCasas.SelectedRows[0].DataBoundItem;
+                var editarForm = new EditarCasa(casaSeleccionada.Id, _casaRepository, _residenteRepository);
 
-               if (editarForm.ShowDialog() == DialogResult.OK)
-               {
-                    
+                if (editarForm.ShowDialog() == DialogResult.OK)
+                {
+
                     await CargarCasasActualizadas();
-               }
+                }
             }
             else
             {
@@ -104,35 +119,35 @@ namespace Seminario_Proyecto_II.Forms.Casas
 
         private async Task CargarCasasActualizadas()
         {
-            
+
             bindingSource.Clear();
 
-            
+
             var casas = await ObtenerCasas();
             bindingSource.DataSource = casas;
             dgvCasas.DataSource = bindingSource;
         }
 
-      
+
         private async void BtnBuscar_Click(object sender, EventArgs e)
         {
-           
+
             if (!string.IsNullOrEmpty(txtBuscar.Text) && txtBuscar.Text.Length >= 3)
             {
                 string filtro = txtBuscar.Text.Trim().ToLower();
 
                 try
                 {
-                    
+
                     var casas = await ObtenerCasas();
-                   
+
                     var casasFiltradas = casas
                         .Where(c => c.Calle.ToLower().Contains(filtro) ||
                                     c.NumCasa.ToLower().Contains(filtro) ||
                                     c.Tipo.ToLower().Contains(filtro))
                         .ToList();
 
-                   
+
                     bindingSource.DataSource = new BindingList<Casa>(casasFiltradas);
                 }
                 catch (Exception ex)

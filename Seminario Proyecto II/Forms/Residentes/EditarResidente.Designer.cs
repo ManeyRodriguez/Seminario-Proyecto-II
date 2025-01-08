@@ -119,7 +119,8 @@
             btnGuardar.TabIndex = 8;
             btnGuardar.Text = "Actualizar";
             btnGuardar.UseVisualStyleBackColor = true;
-            btnGuardar.Click += BtnGuardar_Click;
+            EventHandler btnGuardar_Click = BtnGuardar_Click;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // EditarResidente
             // 
