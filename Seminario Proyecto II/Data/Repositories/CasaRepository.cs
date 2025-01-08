@@ -30,6 +30,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             {
                 return await _context.Casas
                     .AsNoTracking()
+                    .Include(c => c.Residente)
                     .ToListAsync();
             }
             catch (Exception ex)
@@ -47,16 +48,24 @@ namespace Seminario_Proyecto_II.Data.Repositories
         {
             try
             {
-                return await _context.Casas
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync(c => c.Id == id)
-                    ?? throw new KeyNotFoundException($"No se encontró la casa con ID {id}.");
+                var casa = await _context.Casas
+                    .Include(c => c.Residente) // Mantén el Include si necesitas los datos del residente
+                    .AsNoTracking()  // Evita el seguimiento de cambios si solo necesitas lectura
+                    .FirstOrDefaultAsync(c => c.Id == id);
+
+                if (casa == null)
+                {
+                    throw new KeyNotFoundException($"No se encontró la casa con ID {id}.");
+                }
+
+                return casa;
             }
             catch (Exception ex)
             {
                 throw new InvalidOperationException($"Error al obtener la casa con ID {id}.", ex);
             }
         }
+
 
         /// <summary>
         /// Agrega una nueva casa a la base de datos.
@@ -89,12 +98,30 @@ namespace Seminario_Proyecto_II.Data.Repositories
 
             try
             {
-                var casaExistente = await _context.Casas.AsNoTracking().FirstOrDefaultAsync(c => c.Id == casa.Id);
+                
+                var casaExistente = await _context.Casas
+                    .Include(c => c.Residente) 
+                    .FirstOrDefaultAsync(c => c.Id == casa.Id);
+
+
 
                 if (casaExistente == null)
                     throw new KeyNotFoundException($"Casa con ID {casa.Id} no encontrada.");
+             
+                casaExistente.Calle = casa.Calle.Trim();
+                casaExistente.NumCasa = casa.NumCasa.Trim();
+                casaExistente.Tipo = casa.Tipo.Trim();
+                casaExistente.Fecha = casa.Fecha;
 
-                _context.Casas.Update(casa);
+                
+                if (casa.ResidenteId.HasValue && casaExistente.ResidenteId != casa.ResidenteId)
+                {
+                    casaExistente.ResidenteId = casa.ResidenteId;
+                    casaExistente.Residente = casa.Residente; 
+                }
+               
+                _context.Casas.Update(casaExistente);
+               
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -102,6 +129,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new InvalidOperationException("Error al actualizar la casa.", ex);
             }
         }
+
 
         /// <summary>
         /// Elimina una casa por su ID.

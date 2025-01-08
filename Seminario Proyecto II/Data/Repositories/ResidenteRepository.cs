@@ -89,12 +89,21 @@ namespace Seminario_Proyecto_II.Data.Repositories
 
             try
             {
-                var residenteExistente = await _context.Residentes.AsNoTracking().FirstOrDefaultAsync(r => r.Id == residente.Id);
+                var residenteExistente = await _context.Residentes
+                    .FirstOrDefaultAsync(r => r.Id == residente.Id);
 
                 if (residenteExistente == null)
                     throw new KeyNotFoundException($"Residente con ID {residente.Id} no encontrado.");
 
-                _context.Residentes.Update(residente);
+
+
+                residenteExistente.Nombres = residente.Nombres.Trim();
+                residenteExistente.Apellidos = residente.Apellidos.Trim();
+                residenteExistente.Tel = residente.Tel.Trim();
+                residenteExistente.Correo = residente.Correo.Trim();                
+                residenteExistente.Estado = residente.Estado.Trim();
+
+                _context.Residentes.Update(residenteExistente);     
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -102,6 +111,8 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new InvalidOperationException("Error al actualizar el residente.", ex);
             }
         }
+
+
 
 
         /// <summary>
