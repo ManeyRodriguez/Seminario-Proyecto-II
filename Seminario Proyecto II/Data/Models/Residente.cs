@@ -30,7 +30,7 @@ public class Residente
 
     [Required(ErrorMessage = "La contraseña es obligatoria.")]
     [StringLength(24, MinimumLength = 6, ErrorMessage = "La contraseña debe tener entre 6 y 24 caracteres.")]
-    public string PassHash { get; set; }
+    public string PassHash { get; set; } = "12345678";
         
     public string Estado { get; set; } = "Activo";
 
