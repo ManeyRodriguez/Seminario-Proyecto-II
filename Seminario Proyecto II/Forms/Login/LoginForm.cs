@@ -1,41 +1,51 @@
 ﻿using Seminario_Proyecto_II.Data.Repositories;
+using Seminario_Proyecto_II.Data.Models;
 using System;
-using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Seminario_Proyecto_II.Forms.Login
 {
     public partial class LoginForm : Form
     {
-        private readonly IResidenteRepository  _residenteRepository;
+        private readonly IResidenteRepository _residenteRepository;
         private readonly ICasaRepository _casaRepository;
-        public LoginForm(IResidenteRepository residenteRepository, ICasaRepository casaRepository)
+        private readonly IAdministradorRepository _administradorRepository;
+        private readonly IPersonaRelacionadaRepository _personaRelacionadaRepository;
+
+
+        public LoginForm(IResidenteRepository residenteRepository, ICasaRepository casaRepository, IAdministradorRepository administradorRepository, IPersonaRelacionadaRepository personaRelacionadaRepository)
         {
             _casaRepository = casaRepository;
             _residenteRepository = residenteRepository;
-            InitializeComponent();           
+            _administradorRepository = administradorRepository; 
+            _personaRelacionadaRepository=personaRelacionadaRepository;
+            InitializeComponent();
             ApplyCustomStyles();
+            
         }
 
         /// <summary>
         /// Evento que maneja el clic en el botón de login.
         /// </summary>
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private async void buttonLogin_Click(object sender, EventArgs e)
         {
-           
             string username = textBoxUsername.Text.Trim();
             string password = textBoxPassword.Text.Trim();
-          
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Por favor, ingrese usuario y contraseña.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             try
-            {              
-                if (username.Equals("admin", StringComparison.OrdinalIgnoreCase) && password == "1234")
-                {                    
-                    var mainForm = new MainForm(_residenteRepository, _casaRepository);
+            {
+                var administrador = await _administradorRepository.ValidarLogin(username, password);
+
+                if (administrador != null)
+                {
+                    var mainForm = new MainForm(_residenteRepository, _casaRepository, administrador, _personaRelacionadaRepository);
                     mainForm.Show();
                     this.Hide();
                 }
@@ -45,7 +55,7 @@ namespace Seminario_Proyecto_II.Forms.Login
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show($"Ocurrió un error al intentar iniciar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -63,9 +73,8 @@ namespace Seminario_Proyecto_II.Forms.Login
         /// </summary>
         private void ApplyCustomStyles()
         {
-          
-            this.BackColor = Color.FromArgb(34, 34, 34);
-         
+            this.BackColor = System.Drawing.Color.FromArgb(34, 34, 34);
+
             foreach (Control control in this.Controls)
             {
                 switch (control)
@@ -90,10 +99,10 @@ namespace Seminario_Proyecto_II.Forms.Login
         /// </summary>
         private void CustomizeButton(Button button)
         {
-            button.BackColor = Color.FromArgb(0, 122, 204);
-            button.ForeColor = Color.White;
+            button.BackColor = System.Drawing.Color.FromArgb(0, 122, 204);
+            button.ForeColor = System.Drawing.Color.White;
             button.FlatStyle = FlatStyle.Flat;
-            button.Font = new Font("Arial", 9F, FontStyle.Bold);
+            button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
         }
 
         /// <summary>
@@ -101,8 +110,8 @@ namespace Seminario_Proyecto_II.Forms.Login
         /// </summary>
         private void CustomizeLabel(Label label)
         {
-            label.ForeColor = Color.White;
-            label.Font = new Font("Arial", 10F);
+            label.ForeColor = System.Drawing.Color.White;
+            label.Font = new System.Drawing.Font("Arial", 10F);
         }
 
         /// <summary>
@@ -110,10 +119,10 @@ namespace Seminario_Proyecto_II.Forms.Login
         /// </summary>
         private void CustomizeTextBox(TextBox textBox)
         {
-            textBox.BackColor = Color.FromArgb(50, 50, 50);
-            textBox.ForeColor = Color.White;
+            textBox.BackColor = System.Drawing.Color.FromArgb(50, 50, 50);
+            textBox.ForeColor = System.Drawing.Color.White;
             textBox.BorderStyle = BorderStyle.None;
-            textBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular);
+            textBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
         }
     }
 }

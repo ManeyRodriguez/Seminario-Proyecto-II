@@ -1,4 +1,4 @@
-﻿using Seminario_Proyecto_II.Forms.Residentes; // Make sure to include this namespace
+﻿using Seminario_Proyecto_II.Forms.Residentes; // Asegúrate de incluir este namespace
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -10,6 +10,7 @@ namespace Seminario_Proyecto_II.Forms
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label lblCreador;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem residentesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarResidenteMenuItem;
@@ -20,6 +21,9 @@ namespace Seminario_Proyecto_II.Forms
         private System.Windows.Forms.ToolStripMenuItem historialMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verHistorialMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem personasRelacionadasMenuItem; // Nuevo item de menú
+        private System.Windows.Forms.ToolStripMenuItem agregarPersonaRelacionadaMenuItem; // Opción para agregar persona relacionada
+        private System.Windows.Forms.ToolStripMenuItem verPersonasRelacionadasMenuItem; // Opción para ver personas relacionadas
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDateTime;
@@ -48,6 +52,9 @@ namespace Seminario_Proyecto_II.Forms
             verCasasMenuItem = new ToolStripMenuItem();
             historialMenuItem = new ToolStripMenuItem();
             verHistorialMenuItem = new ToolStripMenuItem();
+            personasRelacionadasMenuItem = new ToolStripMenuItem();
+            agregarPersonaRelacionadaMenuItem = new ToolStripMenuItem();
+            verPersonasRelacionadasMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
             panelMain = new Panel();
             lblCreador = new Label();
@@ -63,7 +70,7 @@ namespace Seminario_Proyecto_II.Forms
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ControlDark;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { residentesMenuItem, casasyAccesosMenuItem, historialMenuItem, exitMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { residentesMenuItem, personasRelacionadasMenuItem, casasyAccesosMenuItem, historialMenuItem, exitMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 25);
@@ -82,7 +89,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             agregarResidenteMenuItem.Image = Properties.Resources.plus;
             agregarResidenteMenuItem.Name = "agregarResidenteMenuItem";
-            agregarResidenteMenuItem.Size = new Size(170, 22);
+            agregarResidenteMenuItem.Size = new Size(180, 22);
             agregarResidenteMenuItem.Text = "Agregar Residente";
             agregarResidenteMenuItem.Click += agregarResidenteMenuItem_Click;
             // 
@@ -90,7 +97,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verResidentesMenuItem.Image = Properties.Resources.search;
             verResidentesMenuItem.Name = "verResidentesMenuItem";
-            verResidentesMenuItem.Size = new Size(170, 22);
+            verResidentesMenuItem.Size = new Size(180, 22);
             verResidentesMenuItem.Text = "Ver Residentes";
             verResidentesMenuItem.Click += verResidentesMenuItem_Click;
             // 
@@ -106,7 +113,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             agregarCasaMenuItem.Image = Properties.Resources.plus;
             agregarCasaMenuItem.Name = "agregarCasaMenuItem";
-            agregarCasaMenuItem.Size = new Size(180, 22);
+            agregarCasaMenuItem.Size = new Size(144, 22);
             agregarCasaMenuItem.Text = "Agregar Casa";
             agregarCasaMenuItem.Click += agregarCasaMenuItem_Click_1;
             // 
@@ -114,7 +121,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verCasasMenuItem.Image = Properties.Resources.search;
             verCasasMenuItem.Name = "verCasasMenuItem";
-            verCasasMenuItem.Size = new Size(180, 22);
+            verCasasMenuItem.Size = new Size(144, 22);
             verCasasMenuItem.Text = "Ver Casas";
             verCasasMenuItem.Click += verCasasMenuItem_Click;
             // 
@@ -132,6 +139,29 @@ namespace Seminario_Proyecto_II.Forms
             verHistorialMenuItem.Name = "verHistorialMenuItem";
             verHistorialMenuItem.Size = new Size(199, 22);
             verHistorialMenuItem.Text = "Ver Historial de Accesos";
+            // 
+            // personasRelacionadasMenuItem
+            // 
+            personasRelacionadasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPersonaRelacionadaMenuItem, verPersonasRelacionadasMenuItem });
+            personasRelacionadasMenuItem.Image = Properties.Resources.team;
+            personasRelacionadasMenuItem.Name = "personasRelacionadasMenuItem";
+            personasRelacionadasMenuItem.Size = new Size(154, 21);
+            personasRelacionadasMenuItem.Text = "Personas Relacionadas";
+            // 
+            // agregarPersonaRelacionadaMenuItem
+            // 
+            agregarPersonaRelacionadaMenuItem.Image = Properties.Resources.plus;
+            agregarPersonaRelacionadaMenuItem.Name = "agregarPersonaRelacionadaMenuItem";
+            agregarPersonaRelacionadaMenuItem.Size = new Size(228, 22);
+            agregarPersonaRelacionadaMenuItem.Text = "Agregar Persona Relacionada";
+            agregarPersonaRelacionadaMenuItem.Click += agregarPersonaRelacionadaMenuItem_Click;
+            // 
+            // verPersonasRelacionadasMenuItem
+            // 
+            verPersonasRelacionadasMenuItem.Image = Properties.Resources.search;
+            verPersonasRelacionadasMenuItem.Name = "verPersonasRelacionadasMenuItem";
+            verPersonasRelacionadasMenuItem.Size = new Size(228, 22);
+            verPersonasRelacionadasMenuItem.Text = "Ver Personas Relacionadas";
             // 
             // exitMenuItem
             // 
@@ -168,7 +198,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTitle.Location = new Point(251, 26);
+            labelTitle.Location = new Point(184, 25);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(349, 29);
             labelTitle.TabIndex = 0;
@@ -223,6 +253,6 @@ namespace Seminario_Proyecto_II.Forms
 
 
 
-        private Label lblCreador;
+
     }
 }

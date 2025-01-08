@@ -42,9 +42,10 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 dgvCasas.Columns["ResidenteId"].Visible = false;
                 dgvCasas.Columns["Residente"].Visible = false; 
                 dgvCasas.Columns["Fecha"].Visible = false;
+                dgvCasas.Columns["PersonasRelacionadas"].Visible = false;
 
 
-      
+
             }
             catch (Exception ex)
             {

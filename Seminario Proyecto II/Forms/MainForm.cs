@@ -1,9 +1,10 @@
 ﻿using Seminario_Proyecto_II.Data.Repositories;
 using Seminario_Proyecto_II.Forms.Casas;
 using Seminario_Proyecto_II.Forms.Residentes;
+using Seminario_Proyecto_II.Data.Models; // Para acceder a la clase Administrador
 using System;
 using System.Globalization;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 
 namespace Seminario_Proyecto_II.Forms
 {
@@ -11,12 +12,26 @@ namespace Seminario_Proyecto_II.Forms
     {
         private readonly IResidenteRepository _residenteRepository;
         private readonly ICasaRepository _casaRepository;
+        private readonly IPersonaRelacionadaRepository _personaRelacionadaRepository;
+        private readonly Administrador _administrador;
 
-        public MainForm(IResidenteRepository residenteRepository, ICasaRepository casaRepository)
+
+
+        public MainForm(IResidenteRepository residenteRepository, ICasaRepository casaRepository, Administrador administrador, IPersonaRelacionadaRepository personaRelacionadaRepository)
         {
             _residenteRepository = residenteRepository;
+            _casaRepository = casaRepository;
+            _administrador = administrador;
+            _personaRelacionadaRepository=personaRelacionadaRepository;
             InitializeComponent();
-            _casaRepository=casaRepository;
+            ApplyAdminNameToTitle();
+
+        }
+
+
+        private void ApplyAdminNameToTitle()
+        {
+            labelTitle.Text = $"Bienvenido, {_administrador.NombreCompleto}";
         }
 
         /// <summary>
@@ -32,12 +47,15 @@ namespace Seminario_Proyecto_II.Forms
         /// </summary>
         private void agregarResidenteMenuItem_Click(object sender, EventArgs e)
         {
-
             AbrirFormulario(new AgregarResidente(_residenteRepository));
-
-
         }
 
+
+
+        private void agregarPersonaRelacionadaMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new AgregarPersonasRelacionadas(_personaRelacionadaRepository, _casaRepository));
+        }
 
         /// <summary>
         /// Evento para agregar una nueva casa.
@@ -87,7 +105,10 @@ namespace Seminario_Proyecto_II.Forms
         {
             CultureInfo culture = new CultureInfo("es-ES");
             DateTime now = DateTime.Now;
-            string formattedDateTime = $"{now.ToString("dddd dd 'de' MMMM 'del año' yyyy", culture)} y son las: {now.ToString("HH:mm:ss", culture)}";
+
+            // Cambiar el formato de la hora para incluir AM/PM
+            string formattedDateTime = $"{now.ToString("dddd dd 'de' MMMM 'del año' yyyy", culture)} | {now.ToString("hh:mm:ss tt", culture)}";
+
             toolStripStatusLabelDateTime.Text = formattedDateTime;
         }
 
