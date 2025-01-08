@@ -41,6 +41,8 @@ namespace Seminario_Proyecto_II
                         options.UseSqlServer(connectionString))  // Registra el DbContext
                     .AddScoped<IResidenteRepository,ResidenteRepository>()
                     .AddScoped<ICasaRepository, CasaRepository>()
+                    .AddScoped<IAdministradorRepository, AdministradorRepository>()
+                    .AddScoped<IPersonaRelacionadaRepository, PersonaRelacionadaRepository>()
                     .BuildServiceProvider();
 
 
@@ -58,9 +60,11 @@ namespace Seminario_Proyecto_II
                 // Resolver el repositorio genérico para la entidad Residente
                 var residenteRepository = Program.ServiceProvider.GetRequiredService<IResidenteRepository>();
                 var casaRepository = Program.ServiceProvider.GetRequiredService<ICasaRepository>();
+                var adminRepository = Program.ServiceProvider.GetRequiredService<IAdministradorRepository>();
+                var personaRelacionadaRepository = Program.ServiceProvider.GetRequiredService<IPersonaRelacionadaRepository>();
 
                 // Crear y mostrar el formulario de login
-                var loginForm = new LoginForm(residenteRepository, casaRepository);
+                var loginForm = new LoginForm(residenteRepository, casaRepository, adminRepository, personaRelacionadaRepository);
                 Application.Run(loginForm);
             }
             catch (Exception ex)
