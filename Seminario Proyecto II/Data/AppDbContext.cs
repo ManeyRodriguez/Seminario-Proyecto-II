@@ -12,19 +12,18 @@ namespace Seminario_Proyecto_II.Data
         }
 
         public DbSet<Residente> Residentes { get; set; }
-        public DbSet<Casa> Casas { get; set; }
         public DbSet<PersonaRelacionada> PersonasRelacionadas { get; set; }
+        public DbSet<Administrador> Administradores { get; set; }
+        public DbSet<Casa> Casas { get; set; }
         public DbSet<CodigoDeAcceso> CodigosDeAcceso { get; set; }
         public DbSet<HistorialDeAcceso> HistorialDeAccesos { get; set; }
         public DbSet<Notificacion> Notificaciones { get; set; }
-
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Definir restricciones de longitud y otros detalles si es necesario
+            // Configuración de propiedades y restricciones
             modelBuilder.Entity<Residente>()
                 .Property(r => r.Nombres)
                 .HasMaxLength(100)
@@ -42,10 +41,10 @@ namespace Seminario_Proyecto_II.Data
                 .HasForeignKey(c => c.ResidenteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Residente>()
-                .HasMany(r => r.PersonasRelacionadas)
-                .WithOne(p => p.Residente)
-                .HasForeignKey(p => p.ResidenteId)
+            modelBuilder.Entity<Casa>()
+                .HasMany(c => c.PersonasRelacionadas)
+                .WithOne(p => p.Casa)
+                .HasForeignKey(p => p.CasaId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Residente>()
@@ -66,6 +65,5 @@ namespace Seminario_Proyecto_II.Data
                 .HasForeignKey(h => h.CodigoId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
-
     }
 }
