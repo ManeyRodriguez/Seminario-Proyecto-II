@@ -28,6 +28,7 @@ namespace Seminario_Proyecto_II.Data.Models
 
         
         public Residente? Residente { get; set; }
+        public ICollection<PersonaRelacionada> PersonasRelacionadas { get; set; } = new List<PersonaRelacionada>();
 
         [NotMapped]
         
