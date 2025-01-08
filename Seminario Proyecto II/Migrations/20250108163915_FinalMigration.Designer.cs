@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seminario_Proyecto_II.Data;
 
@@ -11,9 +12,11 @@ using Seminario_Proyecto_II.Data;
 namespace Seminario_Proyecto_II.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250108163915_FinalMigration")]
+    partial class FinalMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -273,9 +276,6 @@ namespace Seminario_Proyecto_II.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CasaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DocID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -288,19 +288,17 @@ namespace Seminario_Proyecto_II.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("ResidenteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Tel")
+                    b.Property<string>("Proposito")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ResidenteId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CasaId");
 
                     b.HasIndex("ResidenteId");
 
@@ -360,17 +358,13 @@ namespace Seminario_Proyecto_II.Migrations
 
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.PersonaRelacionada", b =>
                 {
-                    b.HasOne("Seminario_Proyecto_II.Data.Models.Casa", "Casa")
+                    b.HasOne("Residente", "Residente")
                         .WithMany("PersonasRelacionadas")
-                        .HasForeignKey("CasaId")
+                        .HasForeignKey("ResidenteId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Residente", null)
-                        .WithMany("PersonasRelacionadas")
-                        .HasForeignKey("ResidenteId");
-
-                    b.Navigation("Casa");
+                    b.Navigation("Residente");
                 });
 
             modelBuilder.Entity("Residente", b =>
@@ -379,11 +373,6 @@ namespace Seminario_Proyecto_II.Migrations
 
                     b.Navigation("Notificaciones");
 
-                    b.Navigation("PersonasRelacionadas");
-                });
-
-            modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.Casa", b =>
-                {
                     b.Navigation("PersonasRelacionadas");
                 });
 
