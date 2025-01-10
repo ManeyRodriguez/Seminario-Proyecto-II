@@ -24,14 +24,11 @@ namespace Seminario_Proyecto_II.Forms.Casas
         private async void VerCasas_Load(object sender, EventArgs e)
         {
             try
-            {
-             
+            {             
                 var casas = await ObtenerCasas();
-
           
                 bindingSource.DataSource = casas;
                 dgvCasas.DataSource = bindingSource;
-
       
                 dgvCasas.Columns["Calle"].HeaderText = "Calle";
                 dgvCasas.Columns["NumCasa"].HeaderText = "Número";
@@ -44,8 +41,6 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 dgvCasas.Columns["Fecha"].Visible = false;
                 dgvCasas.Columns["PersonasRelacionadas"].Visible = false;
 
-
-
             }
             catch (Exception ex)
             {
@@ -56,10 +51,8 @@ namespace Seminario_Proyecto_II.Forms.Casas
         private async Task<BindingList<Casa>> ObtenerCasas()
         {
             try
-            {
-                // Asegurarse de que los residentes sean cargados al obtener las casas
-                var casas = await _casaRepository.ObtenerTodos();                   
-                    
+            {                
+                var casas = await _casaRepository.ObtenerTodos();                                       
 
                 return new BindingList<Casa>(casas.ToList());
             }
@@ -69,7 +62,6 @@ namespace Seminario_Proyecto_II.Forms.Casas
                 return new BindingList<Casa>();
             }
         }
-
 
 
         private async void BtnEliminar_Click(object sender, EventArgs e)

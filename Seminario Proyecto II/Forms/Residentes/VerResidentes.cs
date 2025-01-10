@@ -38,6 +38,7 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             dgvResidentes.Columns["Estado"].Visible = false;
             dgvResidentes.Columns["Casas"].Visible = false;
             dgvResidentes.Columns["PersonasRelacionadas"].Visible = false;
+            dgvResidentes.Columns["NombreCompleto"].Visible = false;
             dgvResidentes.Columns["Notificaciones"].Visible = false;
         }
 

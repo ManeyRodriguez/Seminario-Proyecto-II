@@ -5,6 +5,7 @@ using Seminario_Proyecto_II.Data.Models; // Para acceder a la clase Administrado
 using System;
 using System.Globalization;
 using System.Windows.Forms;
+using Seminario_Proyecto_II.Forms.ResidentesRelacionados;
 
 namespace Seminario_Proyecto_II.Forms
 {
@@ -55,6 +56,11 @@ namespace Seminario_Proyecto_II.Forms
         private void agregarPersonaRelacionadaMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new AgregarPersonasRelacionadas(_personaRelacionadaRepository, _casaRepository));
+        }
+
+        private void verPersonasRelacionadasMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new VerPersonasRelacionadas(_personaRelacionadaRepository));
         }
 
         /// <summary>
@@ -112,6 +118,6 @@ namespace Seminario_Proyecto_II.Forms
             toolStripStatusLabelDateTime.Text = formattedDateTime;
         }
 
-  
+    
     }
 }

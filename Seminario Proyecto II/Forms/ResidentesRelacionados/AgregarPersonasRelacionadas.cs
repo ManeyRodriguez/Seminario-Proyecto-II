@@ -143,7 +143,7 @@ namespace Seminario_Proyecto_II.Forms.Residentes
         {
             string busqueda = txtBuscarCasa.Text.Trim();
 
-            // Validar entrada del usuario
+          
             if (string.IsNullOrWhiteSpace(busqueda))
             {
                 MessageBox.Show("Por favor, ingrese un término de búsqueda para buscar casas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -152,38 +152,32 @@ namespace Seminario_Proyecto_II.Forms.Residentes
 
             try
             {
-
-                // Realizar la búsqueda
+               
                 var casas = await _casaRepository.BuscarCasas(busqueda);
-
-                // Asignar resultados al DataGridView
-                dgvResultadosBusqueda.DataSource = casas.Any()
-                    ? casas.Select(c => new
-                    {
-                        CasaId = c.Id,
-                        Calle = c.Calle,
-                        Tipo = c.Tipo,
-                        NumCasa = c.NumCasa,
-                        Asignada = c.Asignada
-                    }).ToList()
-                    : null;
-
-                // Mostrar mensaje si no hay resultados
+              
                 if (!casas.Any())
                 {
-                    MessageBox.Show("No se encontraron casas.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se encontraron casas.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
+                    dgvResultadosBusqueda.DataSource = new List<object>();
+                    return;
                 }
+
+              
+                dgvResultadosBusqueda.DataSource = casas.Select(c => new
+                {
+                    CasaId = c.Id,
+                    Calle = c.Calle,
+                    Tipo = c.Tipo,
+                    NumCasa = c.NumCasa,
+                    Asignada = c.Asignada
+                }).ToList();
             }
-            catch (KeyNotFoundException knfEx)
+            catch (Exception)
             {
-                // Manejar caso específico donde no se encontraron casas
-                MessageBox.Show(knfEx.Message, "Sin Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                // Manejo genérico de errores
-                MessageBox.Show($"Hubo un error al buscar las casas: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se encontraron casas.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvResultadosBusqueda.DataSource = new List<object>();
             }
         }
+
     }
 }

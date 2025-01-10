@@ -47,14 +47,14 @@ namespace Seminario_Proyecto_II.Forms
             residentesMenuItem = new ToolStripMenuItem();
             agregarResidenteMenuItem = new ToolStripMenuItem();
             verResidentesMenuItem = new ToolStripMenuItem();
+            personasRelacionadasMenuItem = new ToolStripMenuItem();
+            agregarPersonaRelacionadaMenuItem = new ToolStripMenuItem();
+            verPersonasRelacionadasMenuItem = new ToolStripMenuItem();
             casasyAccesosMenuItem = new ToolStripMenuItem();
             agregarCasaMenuItem = new ToolStripMenuItem();
             verCasasMenuItem = new ToolStripMenuItem();
             historialMenuItem = new ToolStripMenuItem();
             verHistorialMenuItem = new ToolStripMenuItem();
-            personasRelacionadasMenuItem = new ToolStripMenuItem();
-            agregarPersonaRelacionadaMenuItem = new ToolStripMenuItem();
-            verPersonasRelacionadasMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
             panelMain = new Panel();
             lblCreador = new Label();
@@ -89,7 +89,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             agregarResidenteMenuItem.Image = Properties.Resources.plus;
             agregarResidenteMenuItem.Name = "agregarResidenteMenuItem";
-            agregarResidenteMenuItem.Size = new Size(180, 22);
+            agregarResidenteMenuItem.Size = new Size(170, 22);
             agregarResidenteMenuItem.Text = "Agregar Residente";
             agregarResidenteMenuItem.Click += agregarResidenteMenuItem_Click;
             // 
@@ -97,9 +97,33 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verResidentesMenuItem.Image = Properties.Resources.search;
             verResidentesMenuItem.Name = "verResidentesMenuItem";
-            verResidentesMenuItem.Size = new Size(180, 22);
+            verResidentesMenuItem.Size = new Size(170, 22);
             verResidentesMenuItem.Text = "Ver Residentes";
             verResidentesMenuItem.Click += verResidentesMenuItem_Click;
+            // 
+            // personasRelacionadasMenuItem
+            // 
+            personasRelacionadasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPersonaRelacionadaMenuItem, verPersonasRelacionadasMenuItem });
+            personasRelacionadasMenuItem.Image = Properties.Resources.team;
+            personasRelacionadasMenuItem.Name = "personasRelacionadasMenuItem";
+            personasRelacionadasMenuItem.Size = new Size(154, 21);
+            personasRelacionadasMenuItem.Text = "Personas Relacionadas";
+            // 
+            // agregarPersonaRelacionadaMenuItem
+            // 
+            agregarPersonaRelacionadaMenuItem.Image = Properties.Resources.plus;
+            agregarPersonaRelacionadaMenuItem.Name = "agregarPersonaRelacionadaMenuItem";
+            agregarPersonaRelacionadaMenuItem.Size = new Size(228, 22);
+            agregarPersonaRelacionadaMenuItem.Text = "Agregar Persona Relacionada";
+            agregarPersonaRelacionadaMenuItem.Click += agregarPersonaRelacionadaMenuItem_Click;
+            // 
+            // verPersonasRelacionadasMenuItem
+            // 
+            verPersonasRelacionadasMenuItem.Image = Properties.Resources.search;
+            verPersonasRelacionadasMenuItem.Name = "verPersonasRelacionadasMenuItem";
+            verPersonasRelacionadasMenuItem.Size = new Size(228, 22);
+            verPersonasRelacionadasMenuItem.Text = "Ver Personas Relacionadas";
+            verPersonasRelacionadasMenuItem.Click += verPersonasRelacionadasMenuItem_Click;
             // 
             // casasyAccesosMenuItem
             // 
@@ -139,29 +163,6 @@ namespace Seminario_Proyecto_II.Forms
             verHistorialMenuItem.Name = "verHistorialMenuItem";
             verHistorialMenuItem.Size = new Size(199, 22);
             verHistorialMenuItem.Text = "Ver Historial de Accesos";
-            // 
-            // personasRelacionadasMenuItem
-            // 
-            personasRelacionadasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPersonaRelacionadaMenuItem, verPersonasRelacionadasMenuItem });
-            personasRelacionadasMenuItem.Image = Properties.Resources.team;
-            personasRelacionadasMenuItem.Name = "personasRelacionadasMenuItem";
-            personasRelacionadasMenuItem.Size = new Size(154, 21);
-            personasRelacionadasMenuItem.Text = "Personas Relacionadas";
-            // 
-            // agregarPersonaRelacionadaMenuItem
-            // 
-            agregarPersonaRelacionadaMenuItem.Image = Properties.Resources.plus;
-            agregarPersonaRelacionadaMenuItem.Name = "agregarPersonaRelacionadaMenuItem";
-            agregarPersonaRelacionadaMenuItem.Size = new Size(228, 22);
-            agregarPersonaRelacionadaMenuItem.Text = "Agregar Persona Relacionada";
-            agregarPersonaRelacionadaMenuItem.Click += agregarPersonaRelacionadaMenuItem_Click;
-            // 
-            // verPersonasRelacionadasMenuItem
-            // 
-            verPersonasRelacionadasMenuItem.Image = Properties.Resources.search;
-            verPersonasRelacionadasMenuItem.Name = "verPersonasRelacionadasMenuItem";
-            verPersonasRelacionadasMenuItem.Size = new Size(228, 22);
-            verPersonasRelacionadasMenuItem.Text = "Ver Personas Relacionadas";
             // 
             // exitMenuItem
             // 

@@ -48,30 +48,30 @@
             txtNombres.Location = new Point(28, 46);
             txtNombres.MaxLength = 50;
             txtNombres.Name = "txtNombres";
-            txtNombres.Size = new Size(200, 23);
+            txtNombres.Size = new Size(252, 23);
             txtNombres.TabIndex = 0;
             // 
             // txtApellidos
             // 
-            txtApellidos.Location = new Point(273, 46);
+            txtApellidos.Location = new Point(330, 46);
             txtApellidos.MaxLength = 50;
             txtApellidos.Name = "txtApellidos";
-            txtApellidos.Size = new Size(200, 23);
+            txtApellidos.Size = new Size(252, 23);
             txtApellidos.TabIndex = 1;
             // 
             // txtDocID
             // 
             txtDocID.Location = new Point(28, 104);
             txtDocID.Name = "txtDocID";
-            txtDocID.Size = new Size(200, 23);
+            txtDocID.Size = new Size(252, 23);
             txtDocID.TabIndex = 2;
             // 
             // cmbTipoPersona
             // 
             cmbTipoPersona.Items.AddRange(new object[] { "Familiar", "Invitado", "Trabajador" });
-            cmbTipoPersona.Location = new Point(273, 104);
+            cmbTipoPersona.Location = new Point(330, 104);
             cmbTipoPersona.Name = "cmbTipoPersona";
-            cmbTipoPersona.Size = new Size(200, 23);
+            cmbTipoPersona.Size = new Size(252, 23);
             cmbTipoPersona.TabIndex = 4;
             // 
             // btnGuardar
@@ -79,7 +79,7 @@
             btnGuardar.BackColor = SystemColors.Highlight;
             btnGuardar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnGuardar.ForeColor = SystemColors.ControlLightLight;
-            btnGuardar.Location = new Point(478, 504);
+            btnGuardar.Location = new Point(588, 504);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(100, 28);
             btnGuardar.TabIndex = 5;
@@ -104,7 +104,7 @@
             // 
             txtTelefono.Location = new Point(28, 162);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(200, 23);
+            txtTelefono.Size = new Size(252, 23);
             txtTelefono.TabIndex = 7;
             // 
             // lblNombres
@@ -121,7 +121,7 @@
             // 
             lblApellidos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblApellidos.ForeColor = SystemColors.ControlLightLight;
-            lblApellidos.Location = new Point(273, 20);
+            lblApellidos.Location = new Point(330, 20);
             lblApellidos.Name = "lblApellidos";
             lblApellidos.Size = new Size(65, 23);
             lblApellidos.TabIndex = 1;
@@ -141,7 +141,7 @@
             // 
             lblTipoPersona.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblTipoPersona.ForeColor = SystemColors.ControlLightLight;
-            lblTipoPersona.Location = new Point(273, 78);
+            lblTipoPersona.Location = new Point(330, 78);
             lblTipoPersona.Name = "lblTipoPersona";
             lblTipoPersona.Size = new Size(100, 23);
             lblTipoPersona.TabIndex = 4;
@@ -161,7 +161,7 @@
             // 
             lblBuscarCasa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblBuscarCasa.ForeColor = SystemColors.ControlLightLight;
-            lblBuscarCasa.Location = new Point(273, 136);
+            lblBuscarCasa.Location = new Point(330, 136);
             lblBuscarCasa.Name = "lblBuscarCasa";
             lblBuscarCasa.Size = new Size(100, 23);
             lblBuscarCasa.TabIndex = 8;
@@ -169,11 +169,11 @@
             // 
             // txtBuscarCasa
             // 
-            txtBuscarCasa.Location = new Point(273, 162);
+            txtBuscarCasa.Location = new Point(330, 162);
             txtBuscarCasa.MaxLength = 150;
             txtBuscarCasa.Name = "txtBuscarCasa";
             txtBuscarCasa.PlaceholderText = "Direccion, # casa , Residente";
-            txtBuscarCasa.Size = new Size(200, 23);
+            txtBuscarCasa.Size = new Size(252, 23);
             txtBuscarCasa.TabIndex = 9;
             // 
             // btnBuscarCasa
@@ -181,19 +181,22 @@
             btnBuscarCasa.BackColor = SystemColors.Highlight;
             btnBuscarCasa.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnBuscarCasa.ForeColor = SystemColors.ControlLightLight;
-            btnBuscarCasa.Location = new Point(498, 159);
+            btnBuscarCasa.Location = new Point(597, 158);
             btnBuscarCasa.Name = "btnBuscarCasa";
             btnBuscarCasa.Size = new Size(80, 28);
             btnBuscarCasa.TabIndex = 10;
             btnBuscarCasa.Text = "Buscar";
-            btnBuscarCasa.UseVisualStyleBackColor = false;            
+            btnBuscarCasa.UseVisualStyleBackColor = false;
             btnBuscarCasa.MouseClick += btnBuscarCasa_MouseClick;
             // 
             // dgvResultadosBusqueda
             // 
+            dgvResultadosBusqueda.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dgvResultadosBusqueda.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
             dgvResultadosBusqueda.Location = new Point(28, 246);
+            dgvResultadosBusqueda.MultiSelect = false;
             dgvResultadosBusqueda.Name = "dgvResultadosBusqueda";
-            dgvResultadosBusqueda.Size = new Size(550, 243);
+            dgvResultadosBusqueda.Size = new Size(660, 243);
             dgvResultadosBusqueda.TabIndex = 11;
             dgvResultadosBusqueda.CellClick += dgvResultadosBusqueda_CellClick_1;
             // 
@@ -221,7 +224,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 34, 34);
-            ClientSize = new Size(600, 552);
+            ClientSize = new Size(700, 552);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtNombres);

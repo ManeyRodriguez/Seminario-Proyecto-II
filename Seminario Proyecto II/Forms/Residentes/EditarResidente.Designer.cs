@@ -120,7 +120,7 @@
             btnGuardar.Text = "Actualizar";
             btnGuardar.UseVisualStyleBackColor = true;
             EventHandler btnGuardar_Click = BtnGuardar_Click;
-            btnGuardar.Click += btnGuardar_Click;
+            
             // 
             // EditarResidente
             // 
