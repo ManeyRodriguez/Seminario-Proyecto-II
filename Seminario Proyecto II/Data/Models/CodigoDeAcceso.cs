@@ -1,23 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seminario_Proyecto_II.Data.Models
 {
     public class CodigoDeAcceso
     {
+        [Key] 
         public int Id { get; set; }
+
+        [Required] 
+        [MaxLength(50)] 
         public string Codigo { get; set; }
-        public TipoAcceso Tipo { get; set; } // Temporal o Recurrente
+
+        [Required] 
+        public TipoAcceso Tipo { get; set; }
+
+        [ForeignKey("PersonaRelacionada")] 
         public int PersonaId { get; set; }
+
+        [Required] 
         public DateTime FechaIn { get; set; }
+
+        [Required] 
         public DateTime FechaFn { get; set; }
-        public string Estado { get; set; } // Activo, Usado, Expirado
+
+        [Required] 
+        public EstadoAcceso Estado { get; set; }
+
+        [MaxLength(100)] 
         public string Restricciones { get; set; }
 
-        public PersonaRelacionada PersonaRelacionada { get; set; }
+       
+        public PersonaRelacionada PersonaRelacionada { get; set; }      
         public ICollection<HistorialDeAcceso> HistorialDeAccesos { get; set; }
     }
 
@@ -33,6 +49,4 @@ namespace Seminario_Proyecto_II.Data.Models
         Temporal = 1,
         Recurrente = 2
     }
-
-
 }

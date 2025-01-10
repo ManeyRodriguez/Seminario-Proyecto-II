@@ -10,5 +10,6 @@ namespace Seminario_Proyecto_II.Data.Repositories
         Task<IEnumerable<PersonaRelacionada>> ObtenerPorCasaId(int casaId);
         Task Actualizar(PersonaRelacionada personaRelacionada);
         Task Eliminar(int id);
+        Task<IEnumerable<PersonaRelacionada>> ObtenerTodos();
     }
 }

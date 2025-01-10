@@ -22,8 +22,7 @@ namespace Seminario_Proyecto_II.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Configuración de propiedades y restricciones
+          
             modelBuilder.Entity<Residente>()
                 .Property(r => r.Nombres)
                 .HasMaxLength(100)
@@ -33,8 +32,7 @@ namespace Seminario_Proyecto_II.Data
                 .Property(p => p.Nombres)
                 .HasMaxLength(100)
                 .IsRequired();
-
-            // Configuración de relaciones con comportamiento en eliminación
+         
             modelBuilder.Entity<Residente>()
                 .HasMany(r => r.Casas)
                 .WithOne(c => c.Residente)
