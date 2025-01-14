@@ -57,6 +57,11 @@ namespace Seminario_Proyecto_II.Forms
             verHistorialMenuItem = new ToolStripMenuItem();
             exitMenuItem = new ToolStripMenuItem();
             panelMain = new Panel();
+            lblAcceso = new Label();
+            btnAcceso = new Button();
+            btnBusqueda = new Button();
+            txtBusqueda = new TextBox();
+            dgvBusqueda = new DataGridView();
             lblCreador = new Label();
             labelTitle = new Label();
             statusStrip1 = new StatusStrip();
@@ -64,16 +69,18 @@ namespace Seminario_Proyecto_II.Forms
             timerDateTime = new System.Windows.Forms.Timer(components);
             menuStrip1.SuspendLayout();
             panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvBusqueda).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ControlDark;
+            menuStrip1.ImageScalingSize = new Size(24, 24);
             menuStrip1.Items.AddRange(new ToolStripItem[] { residentesMenuItem, personasRelacionadasMenuItem, casasyAccesosMenuItem, historialMenuItem, exitMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 25);
+            menuStrip1.Size = new Size(1293, 36);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -82,14 +89,14 @@ namespace Seminario_Proyecto_II.Forms
             residentesMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarResidenteMenuItem, verResidentesMenuItem });
             residentesMenuItem.Image = Properties.Resources.team;
             residentesMenuItem.Name = "residentesMenuItem";
-            residentesMenuItem.Size = new Size(91, 21);
+            residentesMenuItem.Size = new Size(136, 32);
             residentesMenuItem.Text = "Residentes";
             // 
             // agregarResidenteMenuItem
             // 
             agregarResidenteMenuItem.Image = Properties.Resources.plus;
             agregarResidenteMenuItem.Name = "agregarResidenteMenuItem";
-            agregarResidenteMenuItem.Size = new Size(170, 22);
+            agregarResidenteMenuItem.Size = new Size(259, 34);
             agregarResidenteMenuItem.Text = "Agregar Residente";
             agregarResidenteMenuItem.Click += agregarResidenteMenuItem_Click;
             // 
@@ -97,7 +104,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verResidentesMenuItem.Image = Properties.Resources.search;
             verResidentesMenuItem.Name = "verResidentesMenuItem";
-            verResidentesMenuItem.Size = new Size(170, 22);
+            verResidentesMenuItem.Size = new Size(259, 34);
             verResidentesMenuItem.Text = "Ver Residentes";
             verResidentesMenuItem.Click += verResidentesMenuItem_Click;
             // 
@@ -106,14 +113,14 @@ namespace Seminario_Proyecto_II.Forms
             personasRelacionadasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarPersonaRelacionadaMenuItem, verPersonasRelacionadasMenuItem });
             personasRelacionadasMenuItem.Image = Properties.Resources.team;
             personasRelacionadasMenuItem.Name = "personasRelacionadasMenuItem";
-            personasRelacionadasMenuItem.Size = new Size(154, 21);
+            personasRelacionadasMenuItem.Size = new Size(229, 32);
             personasRelacionadasMenuItem.Text = "Personas Relacionadas";
             // 
             // agregarPersonaRelacionadaMenuItem
             // 
             agregarPersonaRelacionadaMenuItem.Image = Properties.Resources.plus;
             agregarPersonaRelacionadaMenuItem.Name = "agregarPersonaRelacionadaMenuItem";
-            agregarPersonaRelacionadaMenuItem.Size = new Size(228, 22);
+            agregarPersonaRelacionadaMenuItem.Size = new Size(344, 34);
             agregarPersonaRelacionadaMenuItem.Text = "Agregar Persona Relacionada";
             agregarPersonaRelacionadaMenuItem.Click += agregarPersonaRelacionadaMenuItem_Click;
             // 
@@ -121,7 +128,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verPersonasRelacionadasMenuItem.Image = Properties.Resources.search;
             verPersonasRelacionadasMenuItem.Name = "verPersonasRelacionadasMenuItem";
-            verPersonasRelacionadasMenuItem.Size = new Size(228, 22);
+            verPersonasRelacionadasMenuItem.Size = new Size(344, 34);
             verPersonasRelacionadasMenuItem.Text = "Ver Personas Relacionadas";
             verPersonasRelacionadasMenuItem.Click += verPersonasRelacionadasMenuItem_Click;
             // 
@@ -130,14 +137,14 @@ namespace Seminario_Proyecto_II.Forms
             casasyAccesosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { agregarCasaMenuItem, verCasasMenuItem });
             casasyAccesosMenuItem.Image = Properties.Resources.home;
             casasyAccesosMenuItem.Name = "casasyAccesosMenuItem";
-            casasyAccesosMenuItem.Size = new Size(120, 21);
+            casasyAccesosMenuItem.Size = new Size(180, 32);
             casasyAccesosMenuItem.Text = "Casas y Accesos";
             // 
             // agregarCasaMenuItem
             // 
             agregarCasaMenuItem.Image = Properties.Resources.plus;
             agregarCasaMenuItem.Name = "agregarCasaMenuItem";
-            agregarCasaMenuItem.Size = new Size(144, 22);
+            agregarCasaMenuItem.Size = new Size(220, 34);
             agregarCasaMenuItem.Text = "Agregar Casa";
             agregarCasaMenuItem.Click += agregarCasaMenuItem_Click_1;
             // 
@@ -145,7 +152,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             verCasasMenuItem.Image = Properties.Resources.search;
             verCasasMenuItem.Name = "verCasasMenuItem";
-            verCasasMenuItem.Size = new Size(144, 22);
+            verCasasMenuItem.Size = new Size(220, 34);
             verCasasMenuItem.Text = "Ver Casas";
             verCasasMenuItem.Click += verCasasMenuItem_Click;
             // 
@@ -154,14 +161,14 @@ namespace Seminario_Proyecto_II.Forms
             historialMenuItem.DropDownItems.AddRange(new ToolStripItem[] { verHistorialMenuItem });
             historialMenuItem.Image = Properties.Resources.time_management;
             historialMenuItem.Name = "historialMenuItem";
-            historialMenuItem.Size = new Size(79, 21);
+            historialMenuItem.Size = new Size(117, 32);
             historialMenuItem.Text = "Historial";
             // 
             // verHistorialMenuItem
             // 
             verHistorialMenuItem.Image = Properties.Resources.search;
             verHistorialMenuItem.Name = "verHistorialMenuItem";
-            verHistorialMenuItem.Size = new Size(199, 22);
+            verHistorialMenuItem.Size = new Size(303, 34);
             verHistorialMenuItem.Text = "Ver Historial de Accesos";
             // 
             // exitMenuItem
@@ -171,27 +178,86 @@ namespace Seminario_Proyecto_II.Forms
             exitMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             exitMenuItem.Image = Properties.Resources.logout;
             exitMenuItem.Name = "exitMenuItem";
-            exitMenuItem.Size = new Size(63, 21);
+            exitMenuItem.Size = new Size(94, 32);
             exitMenuItem.Text = "Salir";
             exitMenuItem.Click += exitMenuItem_Click;
             // 
             // panelMain
             // 
+            panelMain.Controls.Add(lblAcceso);
+            panelMain.Controls.Add(btnAcceso);
+            panelMain.Controls.Add(btnBusqueda);
+            panelMain.Controls.Add(txtBusqueda);
+            panelMain.Controls.Add(dgvBusqueda);
             panelMain.Controls.Add(lblCreador);
             panelMain.Controls.Add(labelTitle);
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 25);
+            panelMain.Location = new Point(0, 36);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(800, 403);
+            panelMain.Size = new Size(1293, 809);
             panelMain.TabIndex = 1;
+            // 
+            // lblAcceso
+            // 
+            lblAcceso.AutoSize = true;
+            lblAcceso.Location = new Point(81, 542);
+            lblAcceso.Name = "lblAcceso";
+            lblAcceso.Size = new Size(123, 25);
+            lblAcceso.TabIndex = 15;
+            lblAcceso.Text = "Seleccionada: ";
+            // 
+            // btnAcceso
+            // 
+            btnAcceso.BackColor = Color.ForestGreen;
+            btnAcceso.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAcceso.ForeColor = SystemColors.ControlLightLight;
+            btnAcceso.Location = new Point(1085, 574);
+            btnAcceso.Name = "btnAcceso";
+            btnAcceso.Size = new Size(137, 46);
+            btnAcceso.TabIndex = 14;
+            btnAcceso.Text = "Acceso";
+            btnAcceso.UseVisualStyleBackColor = false;
+            btnAcceso.Click += btnAcceso_Click;
+            // 
+            // btnBusqueda
+            // 
+            btnBusqueda.BackColor = SystemColors.Highlight;
+            btnBusqueda.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnBusqueda.ForeColor = SystemColors.ControlLightLight;
+            btnBusqueda.Location = new Point(405, 152);
+            btnBusqueda.Name = "btnBusqueda";
+            btnBusqueda.Size = new Size(112, 34);
+            btnBusqueda.TabIndex = 13;
+            btnBusqueda.Text = "Buscar";
+            btnBusqueda.UseVisualStyleBackColor = false;
+            btnBusqueda.Click += btnBusqueda_Click;
+            // 
+            // txtBusqueda
+            // 
+            txtBusqueda.Location = new Point(81, 155);
+            txtBusqueda.Name = "txtBusqueda";
+            txtBusqueda.PlaceholderText = "Nombre, Doc ID, Pin";
+            txtBusqueda.Size = new Size(318, 31);
+            txtBusqueda.TabIndex = 11;
+            // 
+            // dgvBusqueda
+            // 
+            dgvBusqueda.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBusqueda.Location = new Point(81, 192);
+            dgvBusqueda.Name = "dgvBusqueda";
+            dgvBusqueda.RowHeadersWidth = 62;
+            dgvBusqueda.Size = new Size(1141, 333);
+            dgvBusqueda.TabIndex = 10;
+            dgvBusqueda.CellClick += dgvBusqueda_CellContentClick;
+            dgvBusqueda.CellContentClick += dgvBusqueda_CellContentClick;
             // 
             // lblCreador
             // 
             lblCreador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblCreador.AutoSize = true;
-            lblCreador.Location = new Point(496, 388);
+            lblCreador.Location = new Point(819, 774);
             lblCreador.Name = "lblCreador";
-            lblCreador.Size = new Size(301, 15);
+            lblCreador.Size = new Size(462, 25);
             lblCreador.TabIndex = 1;
             lblCreador.Text = "Realizado por: Juan Manuel Rodriguez Perez | 100048277";
             // 
@@ -199,19 +265,20 @@ namespace Seminario_Proyecto_II.Forms
             // 
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTitle.Location = new Point(184, 25);
+            labelTitle.Location = new Point(12, 13);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(349, 29);
+            labelTitle.Size = new Size(514, 43);
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Bienvenido al Sistema GMAR";
             // 
             // statusStrip1
             // 
             statusStrip1.BackColor = Color.FromArgb(34, 34, 34);
+            statusStrip1.ImageScalingSize = new Size(24, 24);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelDateTime });
-            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Location = new Point(0, 845);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.Size = new Size(1293, 32);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -219,7 +286,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             toolStripStatusLabelDateTime.BackColor = Color.White;
             toolStripStatusLabelDateTime.Name = "toolStripStatusLabelDateTime";
-            toolStripStatusLabelDateTime.Size = new Size(109, 17);
+            toolStripStatusLabelDateTime.Size = new Size(163, 25);
             toolStripStatusLabelDateTime.Text = "Fecha y hora actual";
             // 
             // timerDateTime
@@ -230,7 +297,7 @@ namespace Seminario_Proyecto_II.Forms
             // 
             // MainForm
             // 
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1293, 877);
             ControlBox = false;
             Controls.Add(panelMain);
             Controls.Add(menuStrip1);
@@ -240,10 +307,13 @@ namespace Seminario_Proyecto_II.Forms
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GMAR - Gestión y Monitoreo de Acceso Residencial";
+            Activated += MainForm_Activated;
+            Load += MainForm_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panelMain.ResumeLayout(false);
             panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvBusqueda).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ResumeLayout(false);
@@ -251,9 +321,10 @@ namespace Seminario_Proyecto_II.Forms
         }
 
         #endregion
-
-
-
-
+        private Button btnBusqueda;
+        private TextBox txtBusqueda;
+        private DataGridView dgvBusqueda;
+        private Label lblAcceso;
+        private Button btnAcceso;
     }
 }
