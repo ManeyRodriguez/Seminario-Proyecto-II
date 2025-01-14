@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Seminario_Proyecto_II.Data.Models;
 
@@ -15,29 +14,29 @@ namespace Seminario_Proyecto_II.Data
         public DbSet<PersonaRelacionada> PersonasRelacionadas { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Casa> Casas { get; set; }
-        public DbSet<CodigoDeAcceso> CodigosDeAcceso { get; set; }
         public DbSet<HistorialDeAcceso> HistorialDeAccesos { get; set; }
-        public DbSet<Notificacion> Notificaciones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-          
+
+            // Configuración para Residente
             modelBuilder.Entity<Residente>()
                 .Property(r => r.Nombres)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            modelBuilder.Entity<PersonaRelacionada>()
-                .Property(p => p.Nombres)
-                .HasMaxLength(100)
-                .IsRequired();
-         
             modelBuilder.Entity<Residente>()
                 .HasMany(r => r.Casas)
                 .WithOne(c => c.Residente)
                 .HasForeignKey(c => c.ResidenteId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuración para PersonaRelacionada
+            modelBuilder.Entity<PersonaRelacionada>()
+                .Property(p => p.Nombres)
+                .HasMaxLength(100)
+                .IsRequired();
 
             modelBuilder.Entity<Casa>()
                 .HasMany(c => c.PersonasRelacionadas)
@@ -45,23 +44,9 @@ namespace Seminario_Proyecto_II.Data
                 .HasForeignKey(p => p.CasaId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Residente>()
-                .HasMany(r => r.Notificaciones)
-                .WithOne(n => n.Residente)
-                .HasForeignKey(n => n.ResidenteId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<PersonaRelacionada>()
-                .HasMany(p => p.CodigosDeAcceso)
-                .WithOne(c => c.PersonaRelacionada)
-                .HasForeignKey(c => c.PersonaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<CodigoDeAcceso>()
-                .HasMany(c => c.HistorialDeAccesos)
-                .WithOne(h => h.CodigoDeAcceso)
-                .HasForeignKey(h => h.CodigoId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Configuración de claves primarias y relaciones adicionales
+            modelBuilder.Entity<HistorialDeAcceso>()
+                .HasKey(h => h.Id); // Asegura que haya una clave primaria definida en HistorialDeAcceso
         }
     }
 }
