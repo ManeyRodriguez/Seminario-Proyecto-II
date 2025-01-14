@@ -24,19 +24,21 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             // dgvResidentes
             // 
             dgvResidentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvResidentes.Location = new Point(12, 50);
+            dgvResidentes.Location = new Point(17, 83);
+            dgvResidentes.Margin = new Padding(4, 5, 4, 5);
             dgvResidentes.Name = "dgvResidentes";
             dgvResidentes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dgvResidentes.Size = new Size(541, 300);
+            dgvResidentes.Size = new Size(939, 500);
             dgvResidentes.TabIndex = 0;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(73, 12);
+            txtBuscar.Location = new Point(104, 28);
+            txtBuscar.Margin = new Padding(4, 5, 4, 5);
             txtBuscar.MaxLength = 150;
             txtBuscar.Name = "txtBuscar";
             txtBuscar.PlaceholderText = "Nombre Residente";
-            txtBuscar.Size = new Size(264, 23);
+            txtBuscar.Size = new Size(375, 31);
             txtBuscar.TabIndex = 1;
             txtBuscar.TextChanged += BtnBuscar_Click;
             // 
@@ -45,9 +47,10 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             lblBuscar.AutoSize = true;
             lblBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBuscar.ForeColor = SystemColors.ControlLightLight;
-            lblBuscar.Location = new Point(12, 15);
+            lblBuscar.Location = new Point(17, 33);
+            lblBuscar.Margin = new Padding(4, 0, 4, 0);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(47, 15);
+            lblBuscar.Size = new Size(75, 25);
             lblBuscar.TabIndex = 2;
             lblBuscar.Text = "Buscar:";
             // 
@@ -56,9 +59,10 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             btnEliminar.BackColor = Color.Red;
             btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(478, 11);
+            btnEliminar.Location = new Point(849, 25);
+            btnEliminar.Margin = new Padding(4, 5, 4, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.Size = new Size(107, 38);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -69,9 +73,10 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             btnEditar.BackColor = Color.Green;
             btnEditar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(386, 11);
+            btnEditar.Location = new Point(722, 25);
+            btnEditar.Margin = new Padding(4, 5, 4, 5);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(75, 23);
+            btnEditar.Size = new Size(107, 38);
             btnEditar.TabIndex = 4;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = false;
@@ -79,16 +84,17 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             // 
             // VerResidentes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 34, 34);
-            ClientSize = new Size(565, 370);
+            ClientSize = new Size(976, 617);
             Controls.Add(lblBuscar);
             Controls.Add(txtBuscar);
             Controls.Add(dgvResidentes);
             Controls.Add(btnEliminar);
             Controls.Add(btnEditar);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "VerResidentes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ver Residentes";
