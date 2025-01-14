@@ -21,24 +21,23 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
 
         private async void VerPersonasRelacionadas_Load(object sender, EventArgs e)
         {
-            // Cargar las personas relacionadas al DataGridView
+            
             var personasRelacionadas = await ObtenerPersonasRelacionadas();
             bindingSource.DataSource = personasRelacionadas;
             dgvPersonasRelacionadas.DataSource = bindingSource;
 
-            // Configurar las columnas que se mostrarán
             dgvPersonasRelacionadas.Columns["Nombres"].HeaderText = "Nombres";
             dgvPersonasRelacionadas.Columns["Apellidos"].HeaderText = "Apellidos";
             dgvPersonasRelacionadas.Columns["DocID"].HeaderText = "Documento ID";
             dgvPersonasRelacionadas.Columns["Tel"].HeaderText = "Teléfono";
             dgvPersonasRelacionadas.Columns["Tipo"].HeaderText = "Tipo de Persona";
 
-            // Ocultar columnas innecesarias
+           
             dgvPersonasRelacionadas.Columns["Casa"].Visible = false;
-            dgvPersonasRelacionadas.Columns["CodigosDeAcceso"].Visible = false;
+           
         }
 
-        // Método para obtener las personas relacionadas de forma asincrónica
+        
         private async Task<BindingList<PersonaRelacionada>> ObtenerPersonasRelacionadas()
         {
             try
@@ -53,7 +52,7 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
             }
         }
 
-        // Evento para eliminar una persona relacionada
+      
         private async void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvPersonasRelacionadas.SelectedRows.Count > 0)
@@ -65,9 +64,7 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
                     try
                     {
                         await _personaRelacionadaRepository.Eliminar(personaSeleccionada.Id);
-                        MessageBox.Show("Persona eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Recargar la lista actualizada después de la eliminación
+                        MessageBox.Show("Persona eliminada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
                         await CargarPersonasRelacionadasActualizadas();
                     }
                     catch (Exception ex)
@@ -82,7 +79,7 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
             }
         }
 
-        // Evento para editar una persona relacionada
+     
         private async void BtnEditar_Click(object sender, EventArgs e)
         {
             if (dgvPersonasRelacionadas.SelectedRows.Count > 0)
@@ -105,16 +102,16 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
 
         private async Task CargarPersonasRelacionadasActualizadas()
         {
-            // Limpiar cualquier filtro aplicado al BindingSource
+           
             bindingSource.Clear();
 
-            // Cargar nuevamente las personas relacionadas desde el repositorio
+          
             var personasRelacionadas = await ObtenerPersonasRelacionadas();
             bindingSource.DataSource = personasRelacionadas;
             dgvPersonasRelacionadas.DataSource = bindingSource;
         }
 
-        // Evento para buscar personas relacionadas
+        
         private async void BtnBuscar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtBuscar.Text) && txtBuscar.Text.Length >= 3)

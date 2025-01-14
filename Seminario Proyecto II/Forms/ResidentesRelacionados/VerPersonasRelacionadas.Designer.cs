@@ -40,7 +40,7 @@
             dgvPersonasRelacionadas.Name = "dgvPersonasRelacionadas";
             dgvPersonasRelacionadas.RowHeadersWidth = 51;
             dgvPersonasRelacionadas.RowTemplate.Height = 29;
-            dgvPersonasRelacionadas.Size = new Size(914, 326);
+            dgvPersonasRelacionadas.Size = new Size(852, 326);
             dgvPersonasRelacionadas.TabIndex = 0;
             // 
             // txtBuscar
@@ -70,7 +70,7 @@
             btnEliminar.BackColor = Color.Red;
             btnEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(610, 8);
+            btnEliminar.Location = new Point(796, 10);
             btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(66, 22);
@@ -84,7 +84,7 @@
             btnEditar.BackColor = Color.Green;
             btnEditar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(525, 8);
+            btnEditar.Location = new Point(711, 10);
             btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(66, 22);
@@ -98,7 +98,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 34, 34);
-            ClientSize = new Size(936, 375);
+            ClientSize = new Size(874, 375);
             Controls.Add(lblBuscar);
             Controls.Add(txtBuscar);
             Controls.Add(dgvPersonasRelacionadas);
