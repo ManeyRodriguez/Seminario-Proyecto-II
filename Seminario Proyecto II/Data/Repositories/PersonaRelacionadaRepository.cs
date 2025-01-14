@@ -28,7 +28,8 @@ namespace Seminario_Proyecto_II.Data.Repositories
         {
             try
             {
-                return await _context.PersonasRelacionadas
+                return await _context.PersonasRelacionadas                   
+                    .Include(r => r.Casa)
                     .AsNoTracking()
                     .ToListAsync();
             }
@@ -95,19 +96,15 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 if (personaExistente == null)
                     throw new KeyNotFoundException($"Persona relacionada con ID {personaRelacionada.Id} no encontrada.");
 
-                // Validaciones adicionales
                 if (string.IsNullOrEmpty(personaRelacionada.Nombres) || string.IsNullOrEmpty(personaRelacionada.Apellidos))
                     throw new ArgumentException("Los campos de nombres y apellidos no pueden estar vacíos.");
 
-                // Actualizar los campos de la persona relacionada
                 personaExistente.Nombres = personaRelacionada.Nombres.Trim();
                 personaExistente.Apellidos = personaRelacionada.Apellidos.Trim();
                 personaExistente.DocID = personaRelacionada.DocID.Trim();
                 personaExistente.Tipo = personaRelacionada.Tipo;
-                
-                
-
-                
+                personaExistente.FechayHoraExp = personaRelacionada.FechayHoraExp;    
+                personaExistente.Estado = personaRelacionada.Estado;
                 personaExistente.CasaId = personaRelacionada.CasaId;
 
                 _context.PersonasRelacionadas.Update(personaExistente);

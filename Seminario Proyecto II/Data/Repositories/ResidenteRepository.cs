@@ -29,7 +29,8 @@ namespace Seminario_Proyecto_II.Data.Repositories
             try
             {
                 return await _context.Residentes
-                    .AsNoTracking()
+                    .Include(r => r.Casas) 
+                    .AsNoTracking() 
                     .ToListAsync();
             }
             catch (Exception ex)
@@ -37,6 +38,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 throw new InvalidOperationException("Error al obtener todos los residentes.", ex);
             }
         }
+
 
         /// <summary>
         /// Obtiene un residente por su ID.
@@ -101,7 +103,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
                 residenteExistente.Apellidos = residente.Apellidos.Trim();
                 residenteExistente.Tel = residente.Tel.Trim();
                 residenteExistente.Correo = residente.Correo.Trim();                
-                residenteExistente.Estado = residente.Estado.Trim();
+                residenteExistente.Estado = residente.Estado;
 
                 _context.Residentes.Update(residenteExistente);     
                 await _context.SaveChangesAsync();
