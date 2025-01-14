@@ -31,8 +31,17 @@ public class Residente
     [Required(ErrorMessage = "La contraseña es obligatoria.")]
     [StringLength(24, MinimumLength = 6, ErrorMessage = "La contraseña debe tener entre 6 y 24 caracteres.")]
     public string PassHash { get; set; } = "12345678";
-        
-    public string Estado { get; set; } = "Activo";
+
+
+    [Required(ErrorMessage = "El estado es obligatorio.")]
+    public bool Estado { get; set; } = true;
+
+
+    [Required(ErrorMessage = "La el pin debe ser obligatorio.")]
+    [StringLength(6, MinimumLength = 6, ErrorMessage = "El PIN debe tener exactamente 6 caracteres.")]
+    [RegularExpression(@"^\d{6}$", ErrorMessage = "El PIN debe contener solo números.")]
+    public string Pin { get; set; } = string.Empty;
+
 
     [NotMapped]
     public string NombreCompleto => $"{Nombres} {Apellidos}";
@@ -46,5 +55,5 @@ public class Residente
 
     public ICollection<Casa> Casas { get; set; } = new List<Casa>();
     public ICollection<PersonaRelacionada> PersonasRelacionadas { get; set; } = new List<PersonaRelacionada>();
-    public ICollection<Notificacion> Notificaciones { get; set; } = new List<Notificacion>();
+
 }

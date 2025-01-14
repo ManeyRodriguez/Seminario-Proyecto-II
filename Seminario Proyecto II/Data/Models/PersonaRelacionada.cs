@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations; // Asegúrate de incluir este namespace
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,10 +29,30 @@ namespace Seminario_Proyecto_II.Data.Models
         [Required(ErrorMessage = "El campo Tipo es obligatorio.")]
         public TipoPersona Tipo { get; set; }
 
-        public DateTime Fecha { get; set; } = DateTime.Now;
+
+        [Required(ErrorMessage = "El estado es obligatorio.")]
+        public bool Estado { get; set; } = true;
+
+
+        [Required(ErrorMessage = "La el pin debe ser obligatorio.")]
+        [StringLength(6, MinimumLength = 6, ErrorMessage = "El PIN debe tener exactamente 6 caracteres.")]
+        [RegularExpression(@"^\d{6}$", ErrorMessage = "El PIN debe contener solo números.")]
+        public string Pin { get; set; } = string.Empty;
+
+        public DateTime FechayHoraExp { get; set; } = DateTime.Now;
 
         public Casa Casa { get; set; }
-        public ICollection<CodigoDeAcceso> CodigosDeAcceso { get; set; }
+        public Residente Residente { get; set; }
+
+
+        [NotMapped]
+        public string NombreCompleto => $"{Nombres} {Apellidos}";
+
+        public override string ToString()
+        {
+            return NombreCompleto;
+        }
+
     }
 
     public enum TipoPersona
@@ -40,4 +61,7 @@ namespace Seminario_Proyecto_II.Data.Models
         Invitado = 2,
         Trabajador = 3
     }
+
+
+
 }

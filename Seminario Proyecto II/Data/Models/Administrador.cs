@@ -27,7 +27,7 @@ namespace Seminario_Proyecto_II.Data.Models
 
         [Required(ErrorMessage = "La contraseña es obligatoria.")]
         [StringLength(24, MinimumLength = 6, ErrorMessage = "La contraseña debe tener entre 6 y 24 caracteres.")]
-        public string PassHash { get; set; } = "12345678"; // Valor por defecto, puede ser cambiado más tarde
+        public string PassHash { get; set; } = "12345678"; 
 
         [Required(ErrorMessage = "El documento de identificación es obligatorio.")]
         [StringLength(20, ErrorMessage = "El documento de identificación no puede exceder los 20 caracteres.")]
