@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Seminario_Proyecto_II.Data.Interfaces;
 
 namespace Seminario_Proyecto_II.Data.Repositories
 {
@@ -11,19 +12,12 @@ namespace Seminario_Proyecto_II.Data.Repositories
     {
         private readonly AppDbContext _context;
 
-        /// <summary>
-        /// Constructor que inyecta el contexto de la base de datos.
-        /// </summary>
-        /// <param name="context">Contexto de base de datos.</param>
+
         public CasaRepository(AppDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        /// <summary>
-        /// Obtiene todas las casas de la base de datos.
-        /// </summary>
-        /// <returns>Lista de casas.</returns>
         public async Task<IEnumerable<Casa>> ObtenerTodos()
         {
             try
@@ -39,18 +33,14 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Obtiene una casa por su ID.
-        /// </summary>
-        /// <param name="id">ID de la casa.</param>
-        /// <returns>La casa correspondiente o null si no existe.</returns>
+
         public async Task<Casa> ObtenerPorId(int id)
         {
             try
             {
                 var casa = await _context.Casas
-                    .Include(c => c.Residente) // Mantén el Include si necesitas los datos del residente
-                    .AsNoTracking()  // Evita el seguimiento de cambios si solo necesitas lectura
+                    .Include(c => c.Residente) 
+                    .AsNoTracking()  
                     .FirstOrDefaultAsync(c => c.Id == id);
 
                 if (casa == null)
@@ -67,10 +57,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
         }
 
 
-        /// <summary>
-        /// Agrega una nueva casa a la base de datos.
-        /// </summary>
-        /// <param name="casa">Entidad de la casa a agregar.</param>
+
         public async Task Agregar(Casa casa)
         {
             if (casa == null)
@@ -87,10 +74,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Actualiza los datos de una casa existente.
-        /// </summary>
-        /// <param name="casa">Entidad de la casa a actualizar.</param>
+
         public async Task Actualizar(Casa casa)
         {
             if (casa == null || casa.Id < 0)
@@ -131,10 +115,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
         }
 
 
-        /// <summary>
-        /// Elimina una casa por su ID.
-        /// </summary>
-        /// <param name="id">ID de la casa a eliminar.</param>
+
         public async Task Eliminar(int id)
         {
             try

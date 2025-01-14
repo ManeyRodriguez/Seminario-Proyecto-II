@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Seminario_Proyecto_II.Data.Interfaces;
 using Seminario_Proyecto_II.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,13 @@ namespace Seminario_Proyecto_II.Data.Repositories
     {
         private readonly AppDbContext _context;
 
-        /// <summary>
-        /// Constructor que inyecta el contexto de la base de datos.
-        /// </summary>
-        /// <param name="context">Contexto de base de datos.</param>
+
         public PersonaRelacionadaRepository(AppDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        /// <summary>
-        /// Obtiene todas las personas relacionadas de la base de datos.
-        /// </summary>
-        /// <returns>Lista de personas relacionadas.</returns>
+    
         public async Task<IEnumerable<PersonaRelacionada>> ObtenerTodos()
         {
             try
@@ -39,11 +34,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Obtiene una persona relacionada por su ID.
-        /// </summary>
-        /// <param name="id">ID de la persona relacionada.</param>
-        /// <returns>La persona relacionada correspondiente o null si no existe.</returns>
+
         public async Task<PersonaRelacionada> ObtenerPorId(int id)
         {
             try
@@ -59,10 +50,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Agrega una nueva persona relacionada a la base de datos.
-        /// </summary>
-        /// <param name="personaRelacionada">Entidad de la persona relacionada a agregar.</param>
+
         public async Task Agregar(PersonaRelacionada personaRelacionada)
         {
             if (personaRelacionada == null)
@@ -79,10 +67,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Actualiza los datos de una persona relacionada existente.
-        /// </summary>
-        /// <param name="personaRelacionada">Entidad de la persona relacionada a actualizar.</param>
+    
         public async Task Actualizar(PersonaRelacionada personaRelacionada)
         {
             if (personaRelacionada == null || personaRelacionada.Id <= 0)
@@ -124,10 +109,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Elimina una persona relacionada por su ID.
-        /// </summary>
-        /// <param name="id">ID de la persona relacionada a eliminar.</param>
+
         public async Task Eliminar(int id)
         {
             try
@@ -145,11 +127,6 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Obtiene todas las personas relacionadas a una casa.
-        /// </summary>
-        /// <param name="CasaId">ID de la casa.</param>
-        /// <returns>Lista de personas relacionadas a la casa.</returns>
         public async Task<IEnumerable<PersonaRelacionada>> ObtenerPorCasaId(int casaId)
         {
             try

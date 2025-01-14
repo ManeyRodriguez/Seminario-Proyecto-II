@@ -1,7 +1,7 @@
 ﻿using Seminario_Proyecto_II.Data.Models;
 using System.Threading.Tasks;
 
-namespace Seminario_Proyecto_II.Data.Repositories
+namespace Seminario_Proyecto_II.Data.Interfaces
 {
     public interface IPersonaRelacionadaRepository
     {

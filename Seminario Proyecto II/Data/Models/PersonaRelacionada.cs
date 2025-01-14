@@ -42,7 +42,7 @@ namespace Seminario_Proyecto_II.Data.Models
         public DateTime FechayHoraExp { get; set; } = DateTime.Now;
 
         public Casa Casa { get; set; }
-        public Residente Residente { get; set; }
+     
 
 
         [NotMapped]

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Seminario_Proyecto_II.Data.Interfaces;
 
 namespace Seminario_Proyecto_II.Data.Repositories
 {
@@ -11,19 +12,13 @@ namespace Seminario_Proyecto_II.Data.Repositories
     {
         private readonly AppDbContext _context;
 
-        /// <summary>
-        /// Constructor que inyecta el contexto de la base de datos.
-        /// </summary>
-        /// <param name="context">Contexto de base de datos.</param>
+
         public ResidenteRepository(AppDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        /// <summary>
-        /// Obtiene todos los residentes de la base de datos.
-        /// </summary>
-        /// <returns>Lista de residentes.</returns>
+
         public async Task<IEnumerable<Residente>> ObtenerTodos()
         {
             try
@@ -40,11 +35,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
         }
 
 
-        /// <summary>
-        /// Obtiene un residente por su ID.
-        /// </summary>
-        /// <param name="id">ID del residente.</param>
-        /// <returns>El residente correspondiente o null si no existe.</returns>
+
         public async Task<Residente> ObtenerPorId(int id)
         {
             try
@@ -60,10 +51,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Agrega un nuevo residente a la base de datos.
-        /// </summary>
-        /// <param name="residente">Entidad del residente a agregar.</param>
+
         public async Task Agregar(Residente residente)
         {
             if (residente == null)
@@ -80,10 +68,7 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Actualiza los datos de un residente existente.
-        /// </summary>
-        /// <param name="residente">Entidad del residente a actualizar.</param>
+
         public async Task Actualizar(Residente residente)
         {
             if (residente == null || residente.Id < 0)
@@ -114,13 +99,6 @@ namespace Seminario_Proyecto_II.Data.Repositories
             }
         }
 
-
-
-
-        /// <summary>
-        /// Elimina un residente por su ID.
-        /// </summary>
-        /// <param name="id">ID del residente a eliminar.</param>
         public async Task Eliminar(int id)
         {
             try

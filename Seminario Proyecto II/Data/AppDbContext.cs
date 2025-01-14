@@ -20,7 +20,7 @@ namespace Seminario_Proyecto_II.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuración para Residente
+            
             modelBuilder.Entity<Residente>()
                 .Property(r => r.Nombres)
                 .HasMaxLength(100)
@@ -32,7 +32,6 @@ namespace Seminario_Proyecto_II.Data
                 .HasForeignKey(c => c.ResidenteId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configuración para PersonaRelacionada
             modelBuilder.Entity<PersonaRelacionada>()
                 .Property(p => p.Nombres)
                 .HasMaxLength(100)
@@ -44,9 +43,9 @@ namespace Seminario_Proyecto_II.Data
                 .HasForeignKey(p => p.CasaId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Configuración de claves primarias y relaciones adicionales
+            
             modelBuilder.Entity<HistorialDeAcceso>()
-                .HasKey(h => h.Id); // Asegura que haya una clave primaria definida en HistorialDeAcceso
+                .HasKey(h => h.Id); 
         }
     }
 }
