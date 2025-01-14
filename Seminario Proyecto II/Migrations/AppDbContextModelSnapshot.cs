@@ -45,9 +45,8 @@ namespace Seminario_Proyecto_II.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
@@ -61,6 +60,11 @@ namespace Seminario_Proyecto_II.Migrations
                         .IsRequired()
                         .HasMaxLength(24)
                         .HasColumnType("nvarchar(24)");
+
+                    b.Property<string>("Pin")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("Tel")
                         .IsRequired()
@@ -164,11 +168,11 @@ namespace Seminario_Proyecto_II.Migrations
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Estado")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaFn")
                         .HasColumnType("datetime2");
@@ -181,7 +185,8 @@ namespace Seminario_Proyecto_II.Migrations
 
                     b.Property<string>("Restricciones")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
@@ -190,7 +195,7 @@ namespace Seminario_Proyecto_II.Migrations
 
                     b.HasIndex("PersonaId");
 
-                    b.ToTable("CodigosDeAcceso");
+                    b.ToTable("CodigoDeAcceso");
                 });
 
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.HistorialDeAcceso", b =>
@@ -200,6 +205,9 @@ namespace Seminario_Proyecto_II.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CodigoDeAccesoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CodigoId")
                         .HasColumnType("int");
@@ -219,46 +227,9 @@ namespace Seminario_Proyecto_II.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CodigoId");
+                    b.HasIndex("CodigoDeAccesoId");
 
                     b.ToTable("HistorialDeAccesos");
-                });
-
-            modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.Notificacion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccesoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("HistorialDeAccesoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mensaje")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ResidenteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HistorialDeAccesoId");
-
-                    b.HasIndex("ResidenteId");
-
-                    b.ToTable("Notificaciones");
                 });
 
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.PersonaRelacionada", b =>
@@ -280,13 +251,21 @@ namespace Seminario_Proyecto_II.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Fecha")
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechayHoraExp")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Pin")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<int?>("ResidenteId")
                         .HasColumnType("int");
@@ -320,9 +299,9 @@ namespace Seminario_Proyecto_II.Migrations
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.CodigoDeAcceso", b =>
                 {
                     b.HasOne("Seminario_Proyecto_II.Data.Models.PersonaRelacionada", "PersonaRelacionada")
-                        .WithMany("CodigosDeAcceso")
+                        .WithMany()
                         .HasForeignKey("PersonaId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PersonaRelacionada");
@@ -332,30 +311,11 @@ namespace Seminario_Proyecto_II.Migrations
                 {
                     b.HasOne("Seminario_Proyecto_II.Data.Models.CodigoDeAcceso", "CodigoDeAcceso")
                         .WithMany("HistorialDeAccesos")
-                        .HasForeignKey("CodigoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CodigoDeAcceso");
-                });
-
-            modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.Notificacion", b =>
-                {
-                    b.HasOne("Seminario_Proyecto_II.Data.Models.HistorialDeAcceso", "HistorialDeAcceso")
-                        .WithMany()
-                        .HasForeignKey("HistorialDeAccesoId")
+                        .HasForeignKey("CodigoDeAccesoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Residente", "Residente")
-                        .WithMany("Notificaciones")
-                        .HasForeignKey("ResidenteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("HistorialDeAcceso");
-
-                    b.Navigation("Residente");
+                    b.Navigation("CodigoDeAcceso");
                 });
 
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.PersonaRelacionada", b =>
@@ -377,8 +337,6 @@ namespace Seminario_Proyecto_II.Migrations
                 {
                     b.Navigation("Casas");
 
-                    b.Navigation("Notificaciones");
-
                     b.Navigation("PersonasRelacionadas");
                 });
 
@@ -390,11 +348,6 @@ namespace Seminario_Proyecto_II.Migrations
             modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.CodigoDeAcceso", b =>
                 {
                     b.Navigation("HistorialDeAccesos");
-                });
-
-            modelBuilder.Entity("Seminario_Proyecto_II.Data.Models.PersonaRelacionada", b =>
-                {
-                    b.Navigation("CodigosDeAcceso");
                 });
 #pragma warning restore 612, 618
         }
