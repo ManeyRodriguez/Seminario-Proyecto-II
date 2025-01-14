@@ -1,5 +1,5 @@
-﻿using Seminario_Proyecto_II.Data.Models;
-using Seminario_Proyecto_II.Data.Repositories;
+﻿using Seminario_Proyecto_II.Data.Interfaces;
+using Seminario_Proyecto_II.Data.Models;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -20,8 +20,8 @@ namespace Seminario_Proyecto_II.Forms.Residentes
 
         private async void VerResidentes_Load(object sender, EventArgs e)
         {
-            // Cargar los residentes al DataGridView    
-            var residentes = await ObtenerResidentes();  // Usamos 'await' para esperar la tarea asincrónica
+          
+            var residentes = await ObtenerResidentes();  
             bindingSource.DataSource = residentes;
             dgvResidentes.DataSource = bindingSource;
 
@@ -42,24 +42,24 @@ namespace Seminario_Proyecto_II.Forms.Residentes
   
         }
 
-        // Método para obtener los residentes de forma asincrónica
+        
         private async Task<BindingList<Residente>> ObtenerResidentes()
         {
             try
             {
                 
-                var residentes = await _residentRepository.ObtenerTodos();  // Línea 49
+                var residentes = await _residentRepository.ObtenerTodos();  
 
                 return new BindingList<Residente>(residentes.ToList());
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ocurrió un error al obtener los residentes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new BindingList<Residente>(); // Retornar lista vacía en caso de error
+                return new BindingList<Residente>(); 
             }
         }
 
-        // Evento para eliminar un residente
+        
         private async void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvResidentes.SelectedRows.Count > 0)
@@ -71,9 +71,7 @@ namespace Seminario_Proyecto_II.Forms.Residentes
                     try
                     {
                         await _residentRepository.Eliminar(residenteSeleccionado.Id);
-                        MessageBox.Show("Residente eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Recargar los residentes actualizados después de la eliminación
+                        MessageBox.Show("Residente eliminado exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);                        
                         await CargarResidentesActualizados();
                     }
                     catch (Exception ex)
@@ -88,7 +86,7 @@ namespace Seminario_Proyecto_II.Forms.Residentes
             }
         }
 
-        // Evento para editar un residente
+     
         private async void BtnEditar_Click(object sender, EventArgs e)
         {
             if (dgvResidentes.SelectedRows.Count > 0)
@@ -98,7 +96,7 @@ namespace Seminario_Proyecto_II.Forms.Residentes
 
                 if (editarForm.ShowDialog() == DialogResult.OK)
                 {
-                    // Después de la edición, recargar la lista de residentes
+                   
                     await CargarResidentesActualizados();
                 }
             }
@@ -110,36 +108,32 @@ namespace Seminario_Proyecto_II.Forms.Residentes
 
         private async Task CargarResidentesActualizados()
         {
-            // Limpiar cualquier filtro aplicado al BindingSource
-            bindingSource.Clear();
-
-            // Cargar nuevamente los residentes desde el repositorio
+            
+            bindingSource.Clear();            
             var residentes = await ObtenerResidentes();
             bindingSource.DataSource = residentes;
             dgvResidentes.DataSource = bindingSource;
         }
 
-        // Evento para buscar residentes
+        
         private async void BtnBuscar_Click(object sender, EventArgs e)
         {
-            // Verifica si el texto de búsqueda tiene al menos 3 caracteres
+            
             if (!string.IsNullOrEmpty(txtBuscar.Text) && txtBuscar.Text.Length >= 3)
             {
                 string filtro = txtBuscar.Text.Trim().ToLower();
 
                 try
                 {
-                    // Obtener los residentes de manera asincrónica
+                    
                     var residentes = await ObtenerResidentes();
-
-                    // Filtrar los residentes en memoria
+                    
                     var residentesFiltrados = residentes
                         .Where(r => (r.Nombres + " " + r.Apellidos).ToLower().Contains(filtro) ||
                                     r.Tel.ToLower().Contains(filtro) ||
                                     r.Correo.ToLower().Contains(filtro))
                         .ToList();
-
-                    // Asignar los residentes filtrados al BindingSource
+                    
                     bindingSource.DataSource = new BindingList<Residente>(residentesFiltrados);
                 }
                 catch (Exception ex)

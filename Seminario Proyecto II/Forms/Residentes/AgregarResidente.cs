@@ -1,11 +1,11 @@
 ﻿using Seminario_Proyecto_II.Data.Models;
-using Seminario_Proyecto_II.Data.Repositories;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Seminario_Proyecto_II.Helpers;
+using Seminario_Proyecto_II.Data.Interfaces;
 
 namespace Seminario_Proyecto_II.Forms.Residentes
 {

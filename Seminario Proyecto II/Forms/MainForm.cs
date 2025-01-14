@@ -1,5 +1,4 @@
-﻿using Seminario_Proyecto_II.Data.Repositories;
-using Seminario_Proyecto_II.Forms.Casas;
+﻿using Seminario_Proyecto_II.Forms.Casas;
 using Seminario_Proyecto_II.Forms.Residentes;
 using Seminario_Proyecto_II.Data.Models; // Para acceder a la clase Administrador
 using System;
@@ -8,6 +7,7 @@ using System.Windows.Forms;
 using Seminario_Proyecto_II.Forms.ResidentesRelacionados;
 using System.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Seminario_Proyecto_II.Data.Interfaces;
 
 namespace Seminario_Proyecto_II.Forms
 {
@@ -46,7 +46,7 @@ namespace Seminario_Proyecto_II.Forms
             AbrirFormulario(new VerResidentes(_residenteRepository));
         }
 
-
+        
         private void agregarResidenteMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new AgregarResidente(_residenteRepository));

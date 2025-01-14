@@ -1,5 +1,5 @@
-﻿using Seminario_Proyecto_II.Data.Models;
-using Seminario_Proyecto_II.Data.Repositories;
+﻿using Seminario_Proyecto_II.Data.Interfaces;
+using Seminario_Proyecto_II.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

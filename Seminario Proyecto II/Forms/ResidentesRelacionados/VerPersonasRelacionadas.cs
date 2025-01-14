@@ -1,5 +1,5 @@
-﻿using Seminario_Proyecto_II.Data.Models;
-using Seminario_Proyecto_II.Data.Repositories;
+﻿using Seminario_Proyecto_II.Data.Interfaces;
+using Seminario_Proyecto_II.Data.Models;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -82,22 +82,7 @@ namespace Seminario_Proyecto_II.Forms.ResidentesRelacionados
      
         private async void BtnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvPersonasRelacionadas.SelectedRows.Count > 0)
-            {
-                var personaSeleccionada = (PersonaRelacionada)dgvPersonasRelacionadas.SelectedRows[0].DataBoundItem;
-               /* var editarForm = new EditarPersonaRelacionada(personaSeleccionada.Id, _personaRelacionadaRepository);
-
-                if (editarForm.ShowDialog() == DialogResult.OK)
-                {
-                    // Recargar lista después de la edición
-                    await CargarPersonasRelacionadasActualizadas();
-                }
-               */
-            }
-            else
-            {
-                MessageBox.Show("Por favor, selecciona una persona para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            
         }
 
         private async Task CargarPersonasRelacionadasActualizadas()

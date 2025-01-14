@@ -1,8 +1,8 @@
-﻿using Seminario_Proyecto_II.Data.Repositories;
-using Seminario_Proyecto_II.Data.Models;
+﻿using Seminario_Proyecto_II.Data.Models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using Seminario_Proyecto_II.Data.Interfaces;
 
 namespace Seminario_Proyecto_II.Forms.Login
 {
