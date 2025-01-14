@@ -24,10 +24,7 @@ namespace Seminario_Proyecto_II.Forms.Login
             ApplyCustomStyles();
             
         }
-
-        /// <summary>
-        /// Evento que maneja el clic en el botón de login.
-        /// </summary>
+             
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
             string username = textBoxUsername.Text.Trim();
@@ -60,17 +57,13 @@ namespace Seminario_Proyecto_II.Forms.Login
             }
         }
 
-        /// <summary>
-        /// Evento para mostrar u ocultar la contraseña.
-        /// </summary>
+        
         private void buttonTogglePassword_Click(object sender, EventArgs e)
         {
             textBoxPassword.PasswordChar = textBoxPassword.PasswordChar == '\0' ? '*' : '\0';
         }
 
-        /// <summary>
-        /// Aplica estilos personalizados al formulario y sus controles.
-        /// </summary>
+      
         private void ApplyCustomStyles()
         {
             this.BackColor = System.Drawing.Color.FromArgb(34, 34, 34);
@@ -94,9 +87,6 @@ namespace Seminario_Proyecto_II.Forms.Login
             }
         }
 
-        /// <summary>
-        /// Personaliza un botón.
-        /// </summary>
         private void CustomizeButton(Button button)
         {
             button.BackColor = System.Drawing.Color.FromArgb(0, 122, 204);
@@ -105,18 +95,14 @@ namespace Seminario_Proyecto_II.Forms.Login
             button.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
         }
 
-        /// <summary>
-        /// Personaliza una etiqueta.
-        /// </summary>
+        
         private void CustomizeLabel(Label label)
         {
             label.ForeColor = System.Drawing.Color.White;
             label.Font = new System.Drawing.Font("Arial", 10F);
         }
 
-        /// <summary>
-        /// Personaliza una caja de texto.
-        /// </summary>
+
         private void CustomizeTextBox(TextBox textBox)
         {
             textBox.BackColor = System.Drawing.Color.FromArgb(50, 50, 50);
